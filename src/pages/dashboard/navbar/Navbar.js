@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = ({ showSidebar, setShowSidebar }) => {
   return (
-    <div>Navbar</div>
+    <div>
+      <button onClick={() => {
+        setShowSidebar(!showSidebar)
+      }}>
+        close sidebar
+      </button>
+    </div>
   )
 }
 

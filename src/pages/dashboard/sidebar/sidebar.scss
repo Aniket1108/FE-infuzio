@@ -1,0 +1,9 @@
+#sidebar__main {
+    height: 100vh;
+    width: 250px;
+    border: 1px solid red;
+    transition: transform 0.3s ease;
+    /* Add a smooth transition effect */
+    transform: translateX(0);
+    /* Start with the sidebar visible */
+}

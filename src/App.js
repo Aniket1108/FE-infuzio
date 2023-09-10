@@ -13,7 +13,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<Auth />} />
-
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
       </Router>
