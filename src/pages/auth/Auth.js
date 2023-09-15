@@ -1,8 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { Routes, Route, Outlet } from 'react-router-dom';
 
+import LogIn from './LogIn';
+import SignUp from './SignUp';
+
+import './auth.scss'
 const index = () => {
   return (
-    <div>index</div>
+    <div id="auth__layout">
+      <Routes>
+        <Route path='/' element={<Outlet />}>
+          <Route index element={<LogIn />} />
+
+          <Route path='login' element={<LogIn />} />
+          <Route path='signup' element={<SignUp />} />
+          
+        </Route>
+      </Routes>
+    </div>
   )
 }
 
