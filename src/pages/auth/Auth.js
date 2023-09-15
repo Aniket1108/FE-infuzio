@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 
-import LogIn from './LogIn';
+import SignIn from './SignIn';
 import SignUp from './SignUp';
 
 import './auth.scss'
@@ -10,10 +10,10 @@ const index = () => {
     <div id="auth__layout">
       <Routes>
         <Route path='/' element={<Outlet />}>
-          <Route index element={<LogIn />} />
+          <Route index element={<SignIn />} />
 
-          <Route path='login' element={<LogIn />} />
-          <Route path='signup' element={<SignUp />} />
+          <Route path='sign-in' element={<SignIn />} />
+          <Route path='sign-up' element={<SignUp />} />
           
         </Route>
       </Routes>

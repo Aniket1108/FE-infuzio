@@ -1,12 +1,12 @@
 // theme-variables.scss
 $themes: (
-    light: (
-        colorText: #000,
+    light: (colorText: #000,
         colorBackground: #f8f8fa,
+        colorContainer: rgb(35, 48, 68),
     ),
-    dark: (
-        colorText: #eff2f7,
+    dark: (colorText: #eff2f7,
         colorBackground: rgb(27, 38, 53),
+        colorContainer: rgb(35, 48, 68),
     ),
 );
 
