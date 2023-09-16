@@ -6,6 +6,8 @@ import Sidebar from './sidebar/Sidebar';
 import Overview from './dashboardPages/overview';
 import Profile from './dashboardPages/profile'
 
+import { Divider } from '@mui/material';
+
 import "./dashboard.scss";
 const Dashboard = () => {
 
@@ -38,6 +40,8 @@ const Dashboard = () => {
       <div className='dashboard__content'>
         <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
+        <Divider />
+        
         <Routes>
           <Route path='/' element={<Outlet />}>
             <Route index element={<Overview />} />

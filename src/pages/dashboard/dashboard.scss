@@ -1,11 +1,18 @@
-/* Updated dashboard CSS */
+@import 'assets/styles/theme_variables.scss';
+
 #dashboard__layout {
     display: flex;
     height: 100vh;
+
+    @include themify($themes) {
+        background: themed('colorBackground');
+        color: themed('colorText');
+    }
+    
 }
 
 .dashboard__content {
     flex-grow: 1;
     transition: margin-left 0.3s ease;
-    margin-left: 0;
+    padding: 0 15px;
 }

@@ -1,7 +1,13 @@
+@import 'assets/styles/theme_variables.scss';
+
 #sidebar__main {
     height: 100vh;
     width: 250px;
-    border: 1px solid red;
+
+    @include themify($themes) {
+        background: themed('colorContainer');
+        color: themed('colorText');
+    }
 }
 
 @media (max-width: 719px) {

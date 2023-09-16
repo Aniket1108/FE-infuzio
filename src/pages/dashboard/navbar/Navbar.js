@@ -1,13 +1,26 @@
 import React from 'react'
 
+import { ManageAccountsOutlined, Menu } from '@mui/icons-material';
+
+import './navbar.scss'
 const Navbar = ({ showSidebar, setShowSidebar }) => {
   return (
-    <div>
-      <button onClick={() => {
+    <div id='navbar__main'>
+      <div className='menu__toggle' onClick={() => {
         setShowSidebar(!showSidebar)
       }}>
-        close sidebar
-      </button>
+        <Menu sx={{ fontSize: 30 }} />
+      </div>
+
+      <div className='menu__items'>
+        <div>
+          {/* dark and light mode button */}
+        </div>
+
+        <div>
+          <ManageAccountsOutlined sx={{ fontSize: 30 }} />
+        </div>
+      </div>
     </div>
   )
 }
