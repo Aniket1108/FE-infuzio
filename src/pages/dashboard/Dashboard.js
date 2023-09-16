@@ -46,6 +46,7 @@ const Dashboard = () => {
           <Route path='/' element={<Outlet />}>
             <Route index element={<Overview />} />
 
+            <Route path='overview' element={<Overview />} />
             <Route path='profile' element={<Profile />} />
 
           </Route>

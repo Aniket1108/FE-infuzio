@@ -1,7 +1,7 @@
 const menuList = [
     {
         name: 'Dashboard',
-        route: '/',
+        route: 'overview',
         isSubMenuOpen: false,
     },
     {
@@ -9,18 +9,18 @@ const menuList = [
         submenus: [
             {
                 name: 'PTC',
-                route: '/ptc'
+                route: 'ptc'
             },
             {
                 name: 'Shortlink',
-                route: '/shortlink'
+                route: 'shortlink'
             },
         ],
         isSubMenuOpen: false,
     },
     {
         name: 'Profile',
-        route: '/profile',
+        route: 'profile',
         isSubMenuOpen: false,
     }
 ]

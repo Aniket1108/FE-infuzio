@@ -2,4 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  /* Use Poppins as the default font */
+}
+
+.custom__link {
+  text-decoration: none;
+  color: inherit;
 }

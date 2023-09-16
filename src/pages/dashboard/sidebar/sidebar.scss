@@ -8,6 +8,59 @@
         background: themed('colorContainer');
         color: themed('colorText');
     }
+
+    .menu__list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        cursor: pointer;
+
+        font-size: 14px;
+        
+        height: 45px;
+        padding: 10px 15px;
+        
+        &:hover {
+            @include themify($themes) {
+                background: themed('colorBackground');
+                color: themed('colorText');
+            }
+        }
+    }
+    
+    .submenu {
+        margin-bottom: 15px;
+        
+        .submenu__list {
+            display: flex;
+            align-items: center;
+            
+            cursor: pointer;
+            
+            font-size: 14px;
+
+            padding-left: 40px;
+            height: 35px;
+
+            &:hover {
+                @include themify($themes) {
+                    background: themed('colorBackground');
+                    color: themed('colorText');
+                }
+            }
+        }
+    }
+
+    // Define styles for the .active class
+    .menu__list.active,
+    .submenu__list.active {
+        @include themify($themes) {
+            background: themed('colorBackground');
+            color: themed('colorText');
+        }
+
+    }
 }
 
 @media (max-width: 719px) {
