@@ -1,21 +1,11 @@
+/* Updated dashboard CSS */
 #dashboard__layout {
     display: flex;
     height: 100vh;
 }
 
-
 .dashboard__content {
     flex-grow: 1;
     transition: margin-left 0.3s ease;
-    margin-left: 0;
-}
-
-/* When the sidebar is hidden, translate it off-screen */
-#dashboard__layout:not(.show-sidebar) #sidebar__main {
-    transform: translateX(-100%);
-}
-
-/* When the sidebar is hidden, add margin to the content area */
-#dashboard__layout:not(.show-sidebar) .dashboard__content {
     margin-left: 0;
 }
