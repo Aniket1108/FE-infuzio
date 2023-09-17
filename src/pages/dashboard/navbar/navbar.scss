@@ -1,0 +1,17 @@
+#navbar__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    height: 70px;
+    
+    .menu__toggle{
+        cursor: pointer;
+
+        margin-left: 15px;
+    }
+
+    .menu__items{
+        margin-right: 15px;
+    }
+}
