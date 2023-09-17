@@ -9,10 +9,13 @@
         color: themed('colorText');
     }
     
-}
+    .dashboard__content {
+        flex-grow: 1;
+        transition: margin-left 0.3s ease;
+        padding: 0 15px;
 
-.dashboard__content {
-    flex-grow: 1;
-    transition: margin-left 0.3s ease;
-    padding: 0 15px;
+        .dashboard__page {
+            padding: 25px;
+        }
+    }
 }

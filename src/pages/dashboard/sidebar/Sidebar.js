@@ -22,6 +22,9 @@ const Sidebar = ({ showSidebar }) => {
 
   return (
     <div id="sidebar__main" style={sidebarStyle}>
+      <div className='sidebar__logo'>
+        Infuzio
+      </div>
       <div>
         {menuList.map((menuItem, index) => (
           <div key={index}>
@@ -30,7 +33,12 @@ const Sidebar = ({ showSidebar }) => {
                 className={`menu__list ${location.pathname === menuItem.route ? 'active' : ''}`} // Check if the route matches the current location
                 onClick={() => toggleSubMenu(index)}
               >
-                {menuItem.name}
+                <div className='single__menu'>
+                  <span className='sidebar__icons'>
+                    {menuItem.icon}
+                  </span>
+                  {menuItem.name}
+                </div>
                 {menuItem.submenus && (
                   <div>
                     {menuItem.isSubMenuOpen ? (
@@ -49,7 +57,13 @@ const Sidebar = ({ showSidebar }) => {
                 className={`menu__list custom__link ${location.pathname === menuItem.route ? 'active' : ''}`} // Check if the route matches the current location
                 to={menuItem.route}
               >
-                {menuItem.name}
+                <div className='single__menu'>
+                  <span className='sidebar__icons'>
+                    {menuItem.icon}
+                  </span>
+
+                  {menuItem.name}
+                </div>
               </NavLink>
             )}
 

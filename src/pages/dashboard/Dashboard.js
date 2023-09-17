@@ -41,16 +41,18 @@ const Dashboard = () => {
         <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
         <Divider />
-        
-        <Routes>
-          <Route path='/' element={<Outlet />}>
-            <Route index element={<Overview />} />
 
-            <Route path='overview' element={<Overview />} />
-            <Route path='profile' element={<Profile />} />
+        <div className='dashboard__page'>
+          <Routes>
+            <Route path='/' element={<Outlet />}>
+              <Route index element={<Overview />} />
 
-          </Route>
-        </Routes>
+              <Route path='overview' element={<Overview />} />
+              <Route path='profile' element={<Profile />} />
+
+            </Route>
+          </Routes>
+        </div>
       </div>
     </div>
   );
