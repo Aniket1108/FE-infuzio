@@ -1,0 +1,67 @@
+#overview__main {
+
+
+    #top__card {
+        width: 100%;
+        // border: 1px solid red;
+        display: flex;
+
+        padding: 7px 0;
+
+        .user__details {
+            display: flex;
+            margin-right: 25px;
+
+            .profile__image {
+                margin-right: 15px;
+                width: 85px;
+                height: 85px;
+                border-radius: 50%;
+            }
+
+            .user___name {
+                margin-top: 5px;
+
+                div {
+                    font-size: 22px;
+                    font-weight: 500;
+                }
+
+                p {
+                    font-size: 11px;
+                    cursor: pointer;
+                    color: lightblue;
+                }
+            }
+
+        }
+
+        .portfolio__value {
+            margin-top: 5px;
+            padding-left: 20px;
+            
+            border-left: 1px solid lightblue;
+
+            display: flex;
+
+            div {
+                font-size: 22px;
+                font-weight: 500;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+        }
+
+        .wallet__buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            margin-left: 20px;
+        }
+
+    }
+}
