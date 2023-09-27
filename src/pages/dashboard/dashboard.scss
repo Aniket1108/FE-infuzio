@@ -2,7 +2,7 @@
 
 #dashboard__layout {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 
     @include themify($themes) {
         background: themed('colorBackground');

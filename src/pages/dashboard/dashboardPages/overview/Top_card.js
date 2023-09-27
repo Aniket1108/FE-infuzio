@@ -25,7 +25,7 @@ const Top_card = () => {
                 </div>
 
                 <div className='wallet__buttons'>
-                    <button>Deposit</button>
+                    {/* <button>Deposit</button> */}
                     <button>Withdraw</button>
                 </div>
             </div>
