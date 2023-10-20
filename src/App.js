@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import PageNotFound from "pages/PageNotFound";
+
 import HomePage from "pages/home_pages/Home"
 import Auth from "pages/auth/Auth"
 import Dashboard from "pages/dashboard/Dashboard";
@@ -29,6 +31,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/auth/*" element={<Auth />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
+
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
       </div>

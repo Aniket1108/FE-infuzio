@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { useHttp } from "utils/api_intercepters";
+import Snackbar from 'components/snackbar/Snackbar';
+
+import userAuth from 'assets/images/user_auth.png'
 
 const SignIn = () => {
     const useHttpMethod = useHttp();
@@ -10,6 +13,8 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
+
+    const [snackbarData, setSnackbarData] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,13 +30,21 @@ const SignIn = () => {
             if (res.statusCode === 200) {
                 localStorage.setItem("token", res.payload.token);
                 navigate("/dashboard");
+            } else {
+                setSnackbarData({ type: 'error', message: res.message });
             }
         })
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarData(null);
     };
 
     return (
         <div className='signin__container'>
             <div className='heading'>
+                <img className='user__auth__image' src={userAuth} />
+
                 <p className='top__heading'>Welcome back</p>
                 <p>Sign in to your account to continue</p>
             </div>
@@ -56,7 +69,8 @@ const SignIn = () => {
             <div>
                 Forgot password?
             </div>
-        </div>
+
+            {snackbarData && <Snackbar message={snackbarData.message} handleClose={handleSnackbarClose} Type={snackbarData.type} />}        </div>
     );
 };
 
