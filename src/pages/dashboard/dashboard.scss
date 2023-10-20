@@ -2,13 +2,13 @@
 
 #dashboard__layout {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 
     @include themify($themes) {
         background: themed('colorBackground');
         color: themed('colorText');
     }
-    
+
     .dashboard__content {
         flex-grow: 1;
         transition: margin-left 0.3s ease;
@@ -17,5 +17,27 @@
         .dashboard__page {
             padding: 25px;
         }
+
+        @media (max-width: 719px) {
+            .dashboard__page {
+                padding: 5px;
+            }
+        }
+    }
+
+    @media (max-width: 719px) {
+        .dashboard__page {
+            padding: 15px;
+        }
+
+        .dashboard__content {
+            padding: 0 10px;
+        }
+    }
+
+    #page__top__header {
+        display: flex;
+
+        margin-bottom: 20px;
     }
 }
