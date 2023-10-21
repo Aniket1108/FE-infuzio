@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useHttp } from "utils/api_intercepters";
 import Snackbar from 'components/snackbar/Snackbar';
@@ -40,6 +40,26 @@ const SignIn = () => {
         setSnackbarData(null);
     };
 
+    const forgotPassword = () => {
+        // Create the JSON data object to send in the request body
+        if (!email) {
+            setSnackbarData({ type: 'error', message: 'please enter your email address' })
+            return
+        }
+
+        const requestData = {
+            email
+        };
+
+        useHttpMethod.post("/auth/forgot-password", requestData).then((res) => {
+            if (res.statusCode === 200) {
+                setSnackbarData({ type: 'success', message: res.message });
+            } else {
+                setSnackbarData({ type: 'error', message: res.message });
+            }
+        })
+    }
+
     return (
         <div className='signin__container'>
             <div className='heading'>
@@ -66,8 +86,16 @@ const SignIn = () => {
 
             </div>
 
+            <div className='navigate__link'
+                onClick={() => {
+                    forgotPassword()
+                }}
+            >
+                Fotgot Password?
+            </div>
+
             <div>
-                Forgot password?
+                Create new account? <Link className='navigate__link custom__link' to='/auth/sign-up' >Sign Up</Link>
             </div>
 
             {snackbarData && <Snackbar message={snackbarData.message} handleClose={handleSnackbarClose} Type={snackbarData.type} />}        </div>
