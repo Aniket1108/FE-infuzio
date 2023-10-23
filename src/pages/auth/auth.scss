@@ -13,6 +13,11 @@
     justify-content: center;
     align-items: center;
 
+    .navigate__link {
+        color: lightblue;
+        cursor: pointer;
+    }
+
     .signin__container {
         min-width: 250px;
         width: 500px;
@@ -27,7 +32,7 @@
         }
 
         .heading {
-            .user__auth__image{
+            .user__auth__image {
                 width: 150px;
                 height: 150px;
             }
@@ -39,14 +44,25 @@
 
         .signin__form {
             margin-top: 15px;
-            
+
             .form__values {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                
+
                 // border: 1px solid red;
                 padding: 0 5%;
+
+                .top__inputs {
+                    width: 100%;
+
+                    display: flex;
+                    justify-content: space-between;
+
+                    .input__feilds {
+                        width: 45%;
+                    }
+                }
 
                 .input__feilds {
                     width: 100%;
@@ -73,7 +89,18 @@
                 .submit__button {
                     margin: 15px 0;
                     width: 100%;
-                    height: 30px;
+                    height: 40px;
+
+                    font-size: 16px;
+
+                    outline: none;
+                    border: none;
+
+                    cursor: pointer;
+                }
+
+                .submit__button:hover {
+                    background: lightblue;
                 }
             }
         }

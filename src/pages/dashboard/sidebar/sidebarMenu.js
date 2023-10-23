@@ -1,4 +1,4 @@
-import { AddLinkOutlined, DashboardCustomizeOutlined, MonetizationOnOutlined, ManageAccountsOutlined, SmartDisplayOutlined } from '@mui/icons-material';
+import { CurrencyBitcoin, AddLinkOutlined, DashboardCustomizeOutlined, MonetizationOnOutlined, ManageAccountsOutlined, SmartDisplayOutlined } from '@mui/icons-material';
 
 const menuList = [
     {
@@ -6,6 +6,23 @@ const menuList = [
         route: 'overview',
         isSubMenuOpen: false,
         icon: <DashboardCustomizeOutlined />
+    },
+    {
+        name: 'Earn ',
+        submenus: [
+            {
+                name: 'Locked staking',
+                route: 'locked-staking',
+                icon: <SmartDisplayOutlined />
+            },
+            {
+                name: 'Flexible staking',
+                route: 'flexible-staking',
+                icon: <SmartDisplayOutlined />
+            }
+        ],
+        isSubMenuOpen: false,
+        icon: <MonetizationOnOutlined />
     },
     {
         name: 'Faucet',
@@ -22,7 +39,7 @@ const menuList = [
             },
         ],
         isSubMenuOpen: false,
-        icon: <MonetizationOnOutlined />
+        icon: <CurrencyBitcoin />
     },
     {
         name: 'Profile',
