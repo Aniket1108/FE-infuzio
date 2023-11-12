@@ -29,7 +29,7 @@ const menuList = [
         submenus: [
             {
                 name: 'Overview',
-                route: 'overview',
+                route: 'faucet/overview',
                 icon: <AddLinkOutlined />
             },
             // {
@@ -38,22 +38,22 @@ const menuList = [
             //     icon: <SmartDisplayOutlined />
             // },
             {
-                name: 'Shortlink',
-                route: 'shortlink',
+                name: 'Shortlinks',
+                route: 'faucet/shortlinks',
                 icon: <AddLinkOutlined />
             },
             {
                 name: 'Offerwalls',
-                route: 'offerwalls',
+                route: 'faucet/offerwalls',
                 icon: <AddLinkOutlined />
             },
             {
                 name: 'Challenges',
-                route: 'challenges',
+                route: 'faucet/challenges',
                 icon: <AddLinkOutlined />
             },
         ],
-        isSubMenuOpen: false,
+        isSubMenuOpen: true,
         icon: <CurrencyBitcoin />
     },
     {

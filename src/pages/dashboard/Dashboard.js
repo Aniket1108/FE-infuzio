@@ -6,6 +6,10 @@ import Sidebar from './sidebar/Sidebar';
 import Overview from './dashboardPages/overview';
 import Profile from './dashboardPages/profile'
 
+import Offerwalls from './dashboardPages/faucet/offerwalls/CardNavigation';
+import Challenges from './dashboardPages/faucet/challenges/CardNavigation';
+import Shortlinks from './dashboardPages/faucet/shortlink/CardNavigation';
+
 import { Divider } from '@mui/material';
 
 import "./dashboard.scss";
@@ -49,6 +53,11 @@ const Dashboard = () => {
 
               <Route path='overview' element={<Overview />} />
               <Route path='profile' element={<Profile />} />
+
+              <Route path='faucet/offerwalls' element={<Offerwalls />} />
+              <Route path='faucet/challenges' element={<Challenges />} />
+              <Route path='faucet/shortlinks' element={<Shortlinks />} />
+
 
             </Route>
           </Routes>

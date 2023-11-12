@@ -1,0 +1,33 @@
+@import 'assets/styles/theme_variables.scss';
+
+.faucet__offerwalls {
+    @include themify($themes) {
+        background: themed('colorContainer');
+        color: themed('colorText');
+    }
+}
+
+#faucet__shortlinks {
+    @include themify($themes) {
+        background: themed('colorContainer');
+        color: themed('colorText');
+    }
+}
+
+#faucet__challenges {
+    @include themify($themes) {
+        background: themed('colorContainer');
+        color: themed('colorText');
+    }
+
+}
+
+.challenges__card {
+    border-radius: 5px;
+    // border: 2px solid red;
+
+    @include themify($themes) {
+        background: themed('colorBackground');
+        color: themed('colorText');
+    }
+}
