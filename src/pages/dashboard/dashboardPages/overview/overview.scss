@@ -86,20 +86,24 @@
 
     #page__middle {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         grid-gap: 25px;
 
-        .table__row{
+        .table__row {
             @include themify($themes) {
-                border-bottom: 1px solid themed('colorBackground');;
+                border-bottom: 1px solid themed('colorBackground');
+                ;
                 color: themed('colorText');
             }
+
             opacity: 0.8;
         }
 
         #crypto__balance {
             padding: 10px;
             border-radius: 10px;
+            max-height: 350px;
+            max-height: 400px;
 
             @include themify($themes) {
                 background: themed('colorContainer');
@@ -109,12 +113,16 @@
             .balance__table {
                 margin-top: 15px;
 
+                // max-height: 300px;
+                // overflow-y: scroll;
             }
         }
 
         #transactions__history {
             padding: 10px;
             border-radius: 10px;
+            max-height: 400px;
+
 
             @include themify($themes) {
                 background: themed('colorContainer');
@@ -123,6 +131,9 @@
 
             .transactions__table {
                 margin-top: 15px;
+                
+                // max-height: 300px;
+                // overflow-y: scroll;
             }
         }
     }

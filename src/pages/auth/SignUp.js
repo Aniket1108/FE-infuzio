@@ -28,7 +28,7 @@ const SignUp = () => {
       password,
     };
 
-    useHttpMethod.post("/auth/signup", requestData).then((res) => {
+    useHttpMethod.post("/user/auth/signup", requestData).then((res) => {
       if (res.statusCode === 200) {
         localStorage.setItem("token", res.payload.token);
         navigate("/dashboard");

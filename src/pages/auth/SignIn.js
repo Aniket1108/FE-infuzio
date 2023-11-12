@@ -26,7 +26,7 @@ const SignIn = () => {
             remember,
         };
 
-        useHttpMethod.post("/auth/signin", requestData).then((res) => {
+        useHttpMethod.post("/user/auth/signin", requestData).then((res) => {
             if (res.statusCode === 200) {
                 localStorage.setItem("token", res.payload.token);
                 navigate("/dashboard");
@@ -51,7 +51,7 @@ const SignIn = () => {
             email
         };
 
-        useHttpMethod.post("/auth/forgot-password", requestData).then((res) => {
+        useHttpMethod.post("/user/auth/forgot-password", requestData).then((res) => {
             if (res.statusCode === 200) {
                 setSnackbarData({ type: 'success', message: res.message });
             } else {

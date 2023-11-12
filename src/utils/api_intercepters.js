@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const Http = axios.create({
-    baseURL: `https://by4oi0umz3.execute-api.ap-south-1.amazonaws.com/Prod`,
+    baseURL: `https://test-api.infuzio.net`,
     headers: {
         "Content-Type": "application/json",
     },

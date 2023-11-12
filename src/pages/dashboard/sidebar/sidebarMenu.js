@@ -7,34 +7,49 @@ const menuList = [
         isSubMenuOpen: false,
         icon: <DashboardCustomizeOutlined />
     },
-    {
-        name: 'Earn ',
-        submenus: [
-            {
-                name: 'Locked staking',
-                route: 'locked-staking',
-                icon: <SmartDisplayOutlined />
-            },
-            {
-                name: 'Flexible staking',
-                route: 'flexible-staking',
-                icon: <SmartDisplayOutlined />
-            }
-        ],
-        isSubMenuOpen: false,
-        icon: <MonetizationOnOutlined />
-    },
+    // {
+    //     name: 'Earn ',
+    //     submenus: [
+    //         {
+    //             name: 'Locked staking',
+    //             route: 'locked-staking',
+    //             icon: <SmartDisplayOutlined />
+    //         },
+    //         {
+    //             name: 'Flexible staking',
+    //             route: 'flexible-staking',
+    //             icon: <SmartDisplayOutlined />
+    //         }
+    //     ],
+    //     isSubMenuOpen: false,
+    //     icon: <MonetizationOnOutlined />
+    // },
     {
         name: 'Faucet',
         submenus: [
             {
-                name: 'PTC',
-                route: 'ptc',
-                icon: <SmartDisplayOutlined />
+                name: 'Overview',
+                route: 'overview',
+                icon: <AddLinkOutlined />
             },
+            // {
+            //     name: 'PTC',
+            //     route: 'ptc',
+            //     icon: <SmartDisplayOutlined />
+            // },
             {
                 name: 'Shortlink',
                 route: 'shortlink',
+                icon: <AddLinkOutlined />
+            },
+            {
+                name: 'Offerwalls',
+                route: 'offerwalls',
+                icon: <AddLinkOutlined />
+            },
+            {
+                name: 'Challenges',
+                route: 'challenges',
                 icon: <AddLinkOutlined />
             },
         ],

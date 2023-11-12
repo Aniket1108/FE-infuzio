@@ -1,8 +1,7 @@
-import React from 'react'
-
 import defaultProfileImage from 'assets/images/default_profile_image.jpg'
 
-const Top_card = () => {
+const Top_card = ({ totalBalance }) => {
+
     return (
         <div id='top__card'>
             <div className='user__details'>
@@ -20,7 +19,7 @@ const Top_card = () => {
                         Portfolio Value
                     </div>
                     <p>
-                        1006.56 $
+                        {totalBalance} $
                     </p>
                 </div>
 

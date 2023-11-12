@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,7 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Crypto_balance = () => {
+const Crypto_balance = ({ allBalance }) => {
+
+
   return (
     <div id='crypto__balance'>
       <div>
@@ -15,7 +17,7 @@ const Crypto_balance = () => {
       </div>
       <div className='balance__table'>
         <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
-          <Table sx={{ minWidth: 650, color: `#fff` }} aria-label="simple table">
+          <Table sx={{ minWidth: 300, color: `#fff` }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell
@@ -31,7 +33,7 @@ const Crypto_balance = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {allBalance?.map((row) => (
                 <TableRow
                   key={row.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -39,9 +41,9 @@ const Crypto_balance = () => {
                   <TableCell component="th" scope="row" className='table__row'>
                     {row.name}
                   </TableCell>
-                  <TableCell align="right" className='table__row'>{row.calories}</TableCell>
-                  <TableCell align="right" className='table__row'>{row.fat}</TableCell>
-                  <TableCell align="right" className='table__row'>{row.carbs}</TableCell>
+                  <TableCell align="right" className='table__row'>{row.balance}</TableCell>
+                  <TableCell align="right" className='table__row'>{row.balanceInUSD}</TableCell>
+                  <TableCell align="right" className='table__row'>{row.priceInUSD}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -59,8 +61,13 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Tron', 159, 6.0, 24, 4.0),
-  createData('Bitcoin', 237, 9.0, 37, 4.3),
-  createData('Ethereum', 262, 16.0, 24, 6.0),
-  createData('Binance', 305, 3.7, 67, 4.3),
-];
+  {
+    "cryptoId": 1,
+    "balance": 0.17,
+    "name": "Tether",
+    "symbol": "USDT",
+    "priceInUSD": 1,
+    "balanceInUSD": 0.17,
+    "imageURL": "https://crypto-backend-public-images.s3.ap-south-1.amazonaws.com/cryptoId_1.png"
+  }
+]
