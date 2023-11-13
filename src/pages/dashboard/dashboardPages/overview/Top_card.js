@@ -1,4 +1,5 @@
 import defaultProfileImage from 'assets/images/default_profile_image.jpg'
+import { Link } from 'react-router-dom'
 
 const Top_card = ({ totalBalance }) => {
 
@@ -9,7 +10,7 @@ const Top_card = ({ totalBalance }) => {
 
                 <div className='user___name'>
                     <div>Aniket Gholap</div>
-                    <p>Edit profile</p>
+                    <p><Link className='custom__link withdraw' to='/dashboard/profile' >Edit profile</Link></p>
                 </div>
             </div>
 
@@ -25,7 +26,8 @@ const Top_card = ({ totalBalance }) => {
 
                 <div className='wallet__buttons'>
                     {/* <button>Deposit</button> */}
-                    <button>Withdraw</button>
+                    {/* <button className='withdraw'>Withdraw</button> */}
+                    <button><Link className='custom__link withdraw' to='/dashboard/faucet/overview' >Withdraw</Link></button>
                 </div>
             </div>
 

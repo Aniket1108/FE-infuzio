@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { ManageAccountsOutlined, Menu } from '@mui/icons-material';
+import UserDropdown from './UserDropdown';
 
 import './navbar.scss'
 const Navbar = ({ showSidebar, setShowSidebar }) => {
@@ -18,7 +19,8 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
         </div>
 
         <div>
-          <ManageAccountsOutlined sx={{ fontSize: 30 }} />
+          {/* <ManageAccountsOutlined sx={{ fontSize: 30 }} /> */}
+          <UserDropdown />
         </div>
       </div>
     </div>

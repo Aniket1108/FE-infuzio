@@ -64,6 +64,17 @@
             justify-content: space-around;
 
             margin-left: 20px;
+
+            .withdraw {
+                padding: 5px 10px;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                font-size: 16px;
+
+            }
         }
 
     }
@@ -131,7 +142,7 @@
 
             .transactions__table {
                 margin-top: 15px;
-                
+
                 // max-height: 300px;
                 // overflow-y: scroll;
             }

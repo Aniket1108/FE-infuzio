@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 import { useHttp } from "utils/api_intercepters";
-import Snackbar from 'components/snackbar/Snackbar';
 
 import userAuth from 'assets/images/user_auth.png'
 
@@ -14,8 +13,6 @@ const SignUp = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const [snackbarData, setSnackbarData] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +29,8 @@ const SignUp = () => {
       if (res.statusCode === 200) {
         localStorage.setItem("token", res.payload.token);
         navigate("/dashboard");
-      } else {
-        setSnackbarData({ type: 'error', message: res.message });
       }
     })
-  };
-
-  const handleSnackbarClose = () => {
-    setSnackbarData(null);
   };
 
   return (
@@ -71,7 +62,7 @@ const SignUp = () => {
         Already have account? <Link className='navigate__link custom__link' to='/auth/sign-in' >Sign In</Link>
       </div>
 
-      {snackbarData && <Snackbar message={snackbarData.message} handleClose={handleSnackbarClose} Type={snackbarData.type} />}        </div>
+    </div>
   );
 }
 
