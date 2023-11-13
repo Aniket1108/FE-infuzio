@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 import { useHttp } from "utils/api_intercepters";
-import Snackbar from 'components/snackbar/Snackbar';
 
 import userAuth from 'assets/images/user_auth.png'
 
@@ -13,8 +12,6 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
-
-    const [snackbarData, setSnackbarData] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,22 +27,17 @@ const SignIn = () => {
             if (res.statusCode === 200) {
                 localStorage.setItem("token", res.payload.token);
                 navigate("/dashboard");
-            } else {
-                setSnackbarData({ type: 'error', message: res.message });
             }
         })
     };
 
-    const handleSnackbarClose = () => {
-        setSnackbarData(null);
-    };
 
     const forgotPassword = () => {
         // Create the JSON data object to send in the request body
-        if (!email) {
-            setSnackbarData({ type: 'error', message: 'please enter your email address' })
-            return
-        }
+        // if (!email) {
+        //     setSnackbarData({ type: 'error', message: 'please enter your email address' })
+        //     return
+        // }
 
         const requestData = {
             email
@@ -53,9 +45,7 @@ const SignIn = () => {
 
         useHttpMethod.post("/user/auth/forgot-password", requestData).then((res) => {
             if (res.statusCode === 200) {
-                setSnackbarData({ type: 'success', message: res.message });
             } else {
-                setSnackbarData({ type: 'error', message: res.message });
             }
         })
     }
@@ -97,8 +87,8 @@ const SignIn = () => {
             <div>
                 Create new account? <Link className='navigate__link custom__link' to='/auth/sign-up' >Sign Up</Link>
             </div>
-
-            {snackbarData && <Snackbar message={snackbarData.message} handleClose={handleSnackbarClose} Type={snackbarData.type} />}        </div>
+\
+        </div>
     );
 };
 

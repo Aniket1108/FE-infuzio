@@ -5,15 +5,32 @@ import Top_card from './Top_card';
 import Crypto_balance from './Crypto_balance';
 import Latest_transaction_history from './Latest_transaction_history';
 
+
+import { Backdrop, CircularProgress, Alert, Snackbar } from '@mui/material'
+
 import './overview.scss';
 
 const Overview = () => {
-  const [allBalance, setAllBalance] = useState(null);
-  const [totalBalance, setTotalBalance] = useState(null);
   const useHttpMethod = useHttp();
 
+  const [allBalance, setAllBalance] = useState(null);
+  const [totalBalance, setTotalBalance] = useState(null);
+
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [snackbarOptions, setSnackbarOptions] = useState({ open: false, severity: "success", message: "" });
+  const handleCloseSnackbar = () => setSnackbarOptions({ ...snackbarOptions, open: false });
+
   useEffect(() => {
+    setOpen(true);
     useHttpMethod.get("/app/wallet/get-balances").then((res) => {
+      setOpen(false);
+      if (res.statusCode !== 200) {
+        return setSnackbarOptions({ open: true, severity: "error", message: res.message });
+      }
+
       setAllBalance(res.payload.allBalance);
       setTotalBalance(res.payload.totalBalanceInUSD);
     });
@@ -34,6 +51,20 @@ const Overview = () => {
         <Crypto_balance allBalance={allBalance} />
         <Latest_transaction_history />
       </div>
+
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+      <Snackbar open={snackbarOptions.open} autoHideDuration={2000} onClose={handleCloseSnackbar} >
+        <Alert severity={snackbarOptions.severity} sx={{ width: '100%' }}>
+          {snackbarOptions.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

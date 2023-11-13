@@ -4,11 +4,17 @@
     height: 100vh;
     width: 250px;
 
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    z-index: 10;
+
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 
     @include themify($themes) {
+        border-right: 2px solid themed('colorBackground');
         background: themed('colorContainer');
         color: themed('colorText');
     }
