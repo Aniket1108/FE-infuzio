@@ -1,49 +1,31 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "sneat-mui-react-nextjs-admin-template",
+  "version": "1.2.0",
   "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.9",
-    "@mui/lab": "^5.0.0-alpha.152",
-    "@mui/material": "^5.14.9",
-    "@mui/x-data-grid": "^6.14.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.5.0",
-    "jwt-decode": "^3.1.2",
-    "mdi-material-ui": "^7.7.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
-    "sass": "^1.66.1",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "build:icons": "node src/iconify-bundle/bundle-icons-react.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@mui/lab": "^5.0.0-alpha.123",
+    "@mui/material": "^5.11.13",
+    "@mui/system": "^5.11.13",
+    "@mui/x-data-grid": "^6.0.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+
+  },
+  "resolutions": {
+
+  },
+  "overrides": {
+    "react-credit-cards": {
+      "react": "$react"
+    }
   }
 }
