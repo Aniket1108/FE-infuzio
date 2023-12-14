@@ -16,7 +16,7 @@
 /build
 
 # template given pages
-/src/pages/temp/
+# /src/pages/temp/
 
 # misc
 .DS_Store
