@@ -71,7 +71,8 @@ const UserDropdown = props => {
 
   const handleLogout = () => {
     // logout()
-    handleDropdownClose()
+    localStorage.removeItem('token');
+    router.push('/auth/login')
   }
 
   return (
@@ -128,7 +129,7 @@ const UserDropdown = props => {
             Profile
           </Box>
         </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/email')}>
+        {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/email')}>
           <Box sx={styles}>
             <Icon icon='bx:envelope' />
             Inbox
@@ -139,9 +140,9 @@ const UserDropdown = props => {
             <Icon icon='bx:message' />
             Chat
           </Box>
-        </MenuItem>
+        </MenuItem> */}
         <Divider sx={{ my: theme => `${theme.spacing(2)} !important` }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/account-settings/account')}>
+        {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/account-settings/account')}>
           <Box sx={styles}>
             <Icon icon='bx:cog' />
             Settings
@@ -159,7 +160,7 @@ const UserDropdown = props => {
             FAQ
           </Box>
         </MenuItem>
-        <Divider />
+        <Divider /> */}
         <MenuItem
           onClick={handleLogout}
           sx={{

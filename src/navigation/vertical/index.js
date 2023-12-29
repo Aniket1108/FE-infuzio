@@ -70,15 +70,15 @@ const navigation = () => {
         },
         {
           title: 'Analytics',
-          path: '/temp/dashboards/analytics'
+          path: '/tempRoutes895865fgrc545/dashboards/analytics'
         },
         {
           title: 'CRM',
-          path: '/temp/dashboards/crm'
+          path: '/tempRoutes895865fgrc545/dashboards/crm'
         },
         {
           title: 'eCommerce',
-          path: '/temp/dashboards/ecommerce'
+          path: '/tempRoutes895865fgrc545/dashboards/ecommerce'
         }
       ]
     },
@@ -88,17 +88,17 @@ const navigation = () => {
     {
       title: 'Email',
       icon: 'bx:envelope',
-      path: '/temp/apps/email'
+      path: '/tempRoutes895865fgrc545/apps/email'
     },
     {
       title: 'Chat',
       icon: 'bx:message',
-      path: '/temp/apps/chat'
+      path: '/tempRoutes895865fgrc545/apps/chat'
     },
     {
       title: 'Calendar',
       icon: 'bx:calendar',
-      path: '/temp/apps/calendar'
+      path: '/tempRoutes895865fgrc545/apps/calendar'
     },
     {
       title: 'Invoice',
@@ -106,19 +106,19 @@ const navigation = () => {
       children: [
         {
           title: 'List',
-          path: '/temp/apps/invoice/list'
+          path: '/tempRoutes895865fgrc545/apps/invoice/list'
         },
         {
           title: 'Preview',
-          path: '/temp/apps/invoice/preview'
+          path: '/tempRoutes895865fgrc545/apps/invoice/preview'
         },
         {
           title: 'Edit',
-          path: '/temp/apps/invoice/edit'
+          path: '/tempRoutes895865fgrc545/apps/invoice/edit'
         },
         {
           title: 'Add',
-          path: '/temp/apps/invoice/add'
+          path: '/tempRoutes895865fgrc545/apps/invoice/add'
         }
       ]
     },
@@ -128,30 +128,30 @@ const navigation = () => {
       children: [
         {
           title: 'List',
-          path: '/temp/apps/user/list'
+          path: '/tempRoutes895865fgrc545/apps/user/list'
         },
         {
           title: 'View',
           children: [
             {
               title: 'Account',
-              path: '/temp/apps/user/view/account'
+              path: '/tempRoutes895865fgrc545/apps/user/view/account'
             },
             {
               title: 'Security',
-              path: '/temp/apps/user/view/security'
+              path: '/tempRoutes895865fgrc545/apps/user/view/security'
             },
             {
               title: 'Billing & Plans',
-              path: '/temp/apps/user/view/billing-plan'
+              path: '/tempRoutes895865fgrc545/apps/user/view/billing-plan'
             },
             {
               title: 'Notifications',
-              path: '/temp/apps/user/view/notification'
+              path: '/tempRoutes895865fgrc545/apps/user/view/notification'
             },
             {
               title: 'Connection',
-              path: '/temp/apps/user/view/connection'
+              path: '/tempRoutes895865fgrc545/apps/user/view/connection'
             }
           ]
         }
@@ -163,11 +163,11 @@ const navigation = () => {
       children: [
         {
           title: 'Roles',
-          path: '/temp/apps/roles'
+          path: '/tempRoutes895865fgrc545/apps/roles'
         },
         {
           title: 'Permissions',
-          path: '/temp/apps/permissions'
+          path: '/tempRoutes895865fgrc545/apps/permissions'
         }
       ]
     },
@@ -180,19 +180,19 @@ const navigation = () => {
           children: [
             {
               title: 'Profile',
-              path: '/temp/pages/user-profile/profile'
+              path: '/tempRoutes895865fgrc545/pages/user-profile/profile'
             },
             {
               title: 'Teams',
-              path: '/temp/pages/user-profile/teams'
+              path: '/tempRoutes895865fgrc545/pages/user-profile/teams'
             },
             {
               title: 'Projects',
-              path: '/temp/pages/user-profile/projects'
+              path: '/tempRoutes895865fgrc545/pages/user-profile/projects'
             },
             {
               title: 'Connections',
-              path: '/temp/pages/user-profile/connections'
+              path: '/tempRoutes895865fgrc545/pages/user-profile/connections'
             }
           ]
         },
@@ -201,37 +201,37 @@ const navigation = () => {
           children: [
             {
               title: 'Account',
-              path: '/temp/pages/account-settings/account'
+              path: '/tempRoutes895865fgrc545/pages/account-settings/account'
             },
             {
               title: 'Security',
-              path: '/temp/pages/account-settings/security'
+              path: '/tempRoutes895865fgrc545/pages/account-settings/security'
             },
             {
               title: 'Billing & Plans',
-              path: '/temp/pages/account-settings/billing-plan'
+              path: '/tempRoutes895865fgrc545/pages/account-settings/billing-plan'
             },
             {
               title: 'Notifications',
-              path: '/temp/pages/account-settings/notifications'
+              path: '/tempRoutes895865fgrc545/pages/account-settings/notifications'
             },
             {
               title: 'Connections',
-              path: '/temp/pages/account-settings/connections'
+              path: '/tempRoutes895865fgrc545/pages/account-settings/connections'
             }
           ]
         },
         {
           title: 'FAQ',
-          path: '/temp/pages/faq'
+          path: '/tempRoutes895865fgrc545/pages/faq'
         },
         {
           title: 'Help Center',
-          path: '/temp/pages/help-center'
+          path: '/tempRoutes895865fgrc545/pages/help-center'
         },
         {
           title: 'Pricing',
-          path: '/temp/pages/pricing'
+          path: '/tempRoutes895865fgrc545/pages/pricing'
         },
         {
           title: 'Miscellaneous',
@@ -239,27 +239,27 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Coming Soon',
-              path: '/temp/pages/misc/coming-soon'
+              path: '/tempRoutes895865fgrc545/pages/misc/coming-soon'
             },
             {
               openInNewTab: true,
               title: 'Under Maintenance',
-              path: '/temp/pages/misc/under-maintenance'
+              path: '/tempRoutes895865fgrc545/pages/misc/under-maintenance'
             },
             {
               openInNewTab: true,
               title: 'Page Not Found - 404',
-              path: '/temp/pages/misc/404-not-found'
+              path: '/tempRoutes895865fgrc545/pages/misc/404-not-found'
             },
             {
               openInNewTab: true,
               title: 'Not Authorized - 401',
-              path: '/temp/pages/misc/401-not-authorized'
+              path: '/tempRoutes895865fgrc545/pages/misc/401-not-authorized'
             },
             {
               openInNewTab: true,
               title: 'Server Error - 500',
-              path: '/temp/pages/misc/500-server-error'
+              path: '/tempRoutes895865fgrc545/pages/misc/500-server-error'
             }
           ]
         }
@@ -275,17 +275,17 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Login v1',
-              path: '/temp/pages/auth/login-v1'
+              path: '/tempRoutes895865fgrc545/pages/auth/login-v1'
             },
             {
               openInNewTab: true,
               title: 'Login v2',
-              path: '/temp/pages/auth/login-v2'
+              path: '/tempRoutes895865fgrc545/pages/auth/login-v2'
             },
             {
               openInNewTab: true,
               title: 'Login With AppBar',
-              path: '/temp/pages/auth/login-with-appbar'
+              path: '/tempRoutes895865fgrc545/pages/auth/login-with-appbar'
             }
           ]
         },
@@ -295,17 +295,17 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Register v1',
-              path: '/temp/pages/auth/register-v1'
+              path: '/tempRoutes895865fgrc545/pages/auth/register-v1'
             },
             {
               openInNewTab: true,
               title: 'Register v2',
-              path: '/temp/pages/auth/register-v2'
+              path: '/tempRoutes895865fgrc545/pages/auth/register-v2'
             },
             {
               openInNewTab: true,
               title: 'Register Multi-Steps',
-              path: '/temp/pages/auth/register-multi-steps'
+              path: '/tempRoutes895865fgrc545/pages/auth/register-multi-steps'
             }
           ]
         },
@@ -315,12 +315,12 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Verify Email v1',
-              path: '/temp/pages/auth/verify-email-v1'
+              path: '/tempRoutes895865fgrc545/pages/auth/verify-email-v1'
             },
             {
               openInNewTab: true,
               title: 'Verify Email v2',
-              path: '/temp/pages/auth/verify-email-v2'
+              path: '/tempRoutes895865fgrc545/pages/auth/verify-email-v2'
             }
           ]
         },
@@ -330,12 +330,12 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Forgot Password v1',
-              path: '/temp/pages/auth/forgot-password-v1'
+              path: '/tempRoutes895865fgrc545/pages/auth/forgot-password-v1'
             },
             {
               openInNewTab: true,
               title: 'Forgot Password v2',
-              path: '/temp/pages/auth/forgot-password-v2'
+              path: '/tempRoutes895865fgrc545/pages/auth/forgot-password-v2'
             }
           ]
         },
@@ -345,12 +345,12 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Reset Password v1',
-              path: '/temp/pages/auth/reset-password-v1'
+              path: '/tempRoutes895865fgrc545/pages/auth/reset-password-v1'
             },
             {
               openInNewTab: true,
               title: 'Reset Password v2',
-              path: '/temp/pages/auth/reset-password-v2'
+              path: '/tempRoutes895865fgrc545/pages/auth/reset-password-v2'
             }
           ]
         },
@@ -360,12 +360,12 @@ const navigation = () => {
             {
               openInNewTab: true,
               title: 'Two Steps v1',
-              path: '/temp/pages/auth/two-steps-v1'
+              path: '/tempRoutes895865fgrc545/pages/auth/two-steps-v1'
             },
             {
               openInNewTab: true,
               title: 'Two Steps v2',
-              path: '/temp/pages/auth/two-steps-v2'
+              path: '/tempRoutes895865fgrc545/pages/auth/two-steps-v2'
             }
           ]
         }
@@ -377,22 +377,22 @@ const navigation = () => {
       children: [
         {
           title: 'Checkout',
-          path: '/temp/pages/wizard-examples/checkout'
+          path: '/tempRoutes895865fgrc545/pages/wizard-examples/checkout'
         },
         {
           title: 'Property Listing',
-          path: '/temp/pages/wizard-examples/property-listing'
+          path: '/tempRoutes895865fgrc545/pages/wizard-examples/property-listing'
         },
         {
           title: 'Create Deal',
-          path: '/temp/pages/wizard-examples/create-deal'
+          path: '/tempRoutes895865fgrc545/pages/wizard-examples/create-deal'
         }
       ]
     },
     {
       icon: 'bx:window-open',
       title: 'Dialog Examples',
-      path: '/temp/pages/dialog-examples'
+      path: '/tempRoutes895865fgrc545/pages/dialog-examples'
     },
     {
       sectionTitle: 'User Interface'
@@ -400,16 +400,16 @@ const navigation = () => {
     {
       title: 'Typography',
       icon: 'bx:text',
-      path: '/temp/ui/typography'
+      path: '/tempRoutes895865fgrc545/ui/typography'
     },
     {
       title: 'Icons',
-      path: '/temp/ui/icons',
+      path: '/tempRoutes895865fgrc545/ui/icons',
       icon: 'bx:crown'
     },
     {
       title: 'Icons Test',
-      path: '/temp/ui/icons-test',
+      path: '/tempRoutes895865fgrc545/ui/icons-test',
       icon: 'bx:crown'
     },
     {
@@ -418,27 +418,27 @@ const navigation = () => {
       children: [
         {
           title: 'Basic',
-          path: '/temp/ui/cards/basic'
+          path: '/tempRoutes895865fgrc545/ui/cards/basic'
         },
         {
           title: 'Advanced',
-          path: '/temp/ui/cards/advanced'
+          path: '/tempRoutes895865fgrc545/ui/cards/advanced'
         },
         {
           title: 'Statistics',
-          path: '/temp/ui/cards/statistics'
+          path: '/tempRoutes895865fgrc545/ui/cards/statistics'
         },
         {
           title: 'Widgets',
-          path: '/temp/ui/cards/widgets'
+          path: '/tempRoutes895865fgrc545/ui/cards/widgets'
         },
         {
           title: 'Gamification',
-          path: '/temp/ui/cards/gamification'
+          path: '/tempRoutes895865fgrc545/ui/cards/gamification'
         },
         {
           title: 'Actions',
-          path: '/temp/ui/cards/actions'
+          path: '/tempRoutes895865fgrc545/ui/cards/actions'
         }
       ]
     },
@@ -450,87 +450,87 @@ const navigation = () => {
       children: [
         {
           title: 'Accordion',
-          path: '/temp/components/accordion'
+          path: '/tempRoutes895865fgrc545/components/accordion'
         },
         {
           title: 'Alerts',
-          path: '/temp/components/alerts'
+          path: '/tempRoutes895865fgrc545/components/alerts'
         },
         {
           title: 'Avatars',
-          path: '/temp/components/avatars'
+          path: '/tempRoutes895865fgrc545/components/avatars'
         },
         {
           title: 'Badges',
-          path: '/temp/components/badges'
+          path: '/tempRoutes895865fgrc545/components/badges'
         },
         {
           title: 'Buttons',
-          path: '/temp/components/buttons'
+          path: '/tempRoutes895865fgrc545/components/buttons'
         },
         {
           title: 'Button Group',
-          path: '/temp/components/button-group'
+          path: '/tempRoutes895865fgrc545/components/button-group'
         },
         {
           title: 'Chips',
-          path: '/temp/components/chips'
+          path: '/tempRoutes895865fgrc545/components/chips'
         },
         {
           title: 'Dialogs',
-          path: '/temp/components/dialogs'
+          path: '/tempRoutes895865fgrc545/components/dialogs'
         },
         {
           title: 'List',
-          path: '/temp/components/list'
+          path: '/tempRoutes895865fgrc545/components/list'
         },
         {
           title: 'Menu',
-          path: '/temp/components/menu'
+          path: '/tempRoutes895865fgrc545/components/menu'
         },
         {
           title: 'Pagination',
-          path: '/temp/components/pagination'
+          path: '/tempRoutes895865fgrc545/components/pagination'
         },
         {
           title: 'Progress',
-          path: '/temp/components/progress'
+          path: '/tempRoutes895865fgrc545/components/progress'
         },
         {
           title: 'Ratings',
-          path: '/temp/components/ratings'
+          path: '/tempRoutes895865fgrc545/components/ratings'
         },
         {
           title: 'Snackbar',
-          path: '/temp/components/snackbar'
+          path: '/tempRoutes895865fgrc545/components/snackbar'
         },
         {
           title: 'Swiper',
-          path: '/temp/components/swiper'
+          path: '/tempRoutes895865fgrc545/components/swiper'
         },
         {
           title: 'Tabs',
-          path: '/temp/components/tabs'
+          path: '/tempRoutes895865fgrc545/components/tabs'
         },
         {
           title: 'Timeline',
-          path: '/temp/components/timeline'
+          path: '/tempRoutes895865fgrc545/components/timeline'
         },
         {
           title: 'Toasts',
-          path: '/temp/components/toast'
+          path: '/tempRoutes895865fgrc545/components/toast'
         },
         {
           title: 'Tree View',
-          path: '/temp/components/tree-view'
+          path: '/tempRoutes895865fgrc545/components/tree-view'
         },
         {
           title: 'More',
-          path: '/temp/components/more'
+          path: '/tempRoutes895865fgrc545/components/more'
         },
         {
           title: 'Test',
-          path: '/temp/components/test'
+          path: '/tempRoutes895865fgrc545/components/test'
         }
       ]
     },
@@ -543,86 +543,86 @@ const navigation = () => {
       children: [
         {
           title: 'Text Field',
-          path: '/temp/forms/form-elements/text-field'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/text-field'
         },
         {
           title: 'Select',
-          path: '/temp/forms/form-elements/select'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/select'
         },
         {
           title: 'Checkbox',
-          path: '/temp/forms/form-elements/checkbox'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/checkbox'
         },
         {
           title: 'Radio',
-          path: '/temp/forms/form-elements/radio'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/radio'
         },
         {
           title: 'Custom Inputs',
-          path: '/temp/forms/form-elements/custom-inputs'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/custom-inputs'
         },
         {
           title: 'Textarea',
-          path: '/temp/forms/form-elements/textarea'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/textarea'
         },
         {
           title: 'Autocomplete',
-          path: '/temp/forms/form-elements/autocomplete'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/autocomplete'
         },
         {
           title: 'Date Pickers',
-          path: '/temp/forms/form-elements/pickers'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/pickers'
         },
         {
           title: 'Switch',
-          path: '/temp/forms/form-elements/switch'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/switch'
         },
         {
           title: 'File Uploader',
-          path: '/temp/forms/form-elements/file-uploader'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/file-uploader'
         },
         {
           title: 'Editor',
-          path: '/temp/forms/form-elements/editor'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/editor'
         },
         {
           title: 'Slider',
-          path: '/temp/forms/form-elements/slider'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/slider'
         },
         {
           title: 'Input Mask',
-          path: '/temp/forms/form-elements/input-mask'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/input-mask'
         },
         {
           title: 'Test',
-          path: '/temp/forms/form-elements/test'
+          path: '/tempRoutes895865fgrc545/forms/form-elements/test'
         }
       ]
     },
     {
       icon: 'bx:detail',
       title: 'Form Layouts',
-      path: '/temp/forms/form-layouts'
+      path: '/tempRoutes895865fgrc545/forms/form-layouts'
     },
     {
       title: 'Form Validation',
-      path: '/temp/forms/form-validation',
+      path: '/tempRoutes895865fgrc545/forms/form-validation',
       icon: 'bx:list-check'
     },
     {
       title: 'Form Wizard',
-      path: '/temp/forms/form-wizard',
+      path: '/tempRoutes895865fgrc545/forms/form-wizard',
       icon: 'bx:carousel'
     },
     {
       title: 'Table',
       icon: 'bx:table',
-      path: '/temp/tables/mui'
+      path: '/tempRoutes895865fgrc545/tables/mui'
     },
     {
       title: 'Mui DataGrid',
       icon: 'bx:grid',
-      path: '/temp/tables/data-grid'
+      path: '/tempRoutes895865fgrc545/tables/data-grid'
     },
     {
       sectionTitle: 'Charts & Misc'
@@ -633,20 +633,20 @@ const navigation = () => {
       children: [
         {
           title: 'Apex',
-          path: '/temp/charts/apex-charts'
+          path: '/tempRoutes895865fgrc545/charts/apex-charts'
         },
         {
           title: 'Recharts',
-          path: '/temp/charts/recharts'
+          path: '/tempRoutes895865fgrc545/charts/recharts'
         },
         {
           title: 'ChartJS',
-          path: '/temp/charts/chartjs'
+          path: '/tempRoutes895865fgrc545/charts/chartjs'
         }
       ]
     },
     {
-      path: '/temp/acl',
+      path: '/tempRoutes895865fgrc545/acl',
       // action: 'read',
       // subject: 'acl-page',
       icon: 'bx:shield',
