@@ -34,11 +34,11 @@ const navigation = () => {
         },
         {
           title: 'Challenges',
-          path: '/faucet/Challenges'
+          path: '/faucet/challenges'
         },
         {
           title: 'Offerwalls',
-          path: '/faucet/Offerwalls'
+          path: '/faucet/offerwalls'
         },
         {
           title: 'Shortlinks',
