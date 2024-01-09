@@ -1,36 +1,18 @@
-// ** React Imports
-import { useState } from 'react'
-
-// ** Next Import
+import { useState, Fragment } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 
-// ** MUI Components
-import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import FormControl from '@mui/material/FormControl'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import OutlinedInput from '@mui/material/OutlinedInput'
+import {
+  Button, Divider, Checkbox, TextField, InputLabel, IconButton, Box, Typography, FormControl, useMediaQuery, OutlinedInput, InputAdornment, FormControlLabel, Snackbar, Alert
+} from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton';
 import { styled, useTheme } from '@mui/material/styles'
-import InputAdornment from '@mui/material/InputAdornment'
-import FormControlLabel from '@mui/material/FormControlLabel'
-
-// ** Icon Imports
 import Icon from 'src/@core/components/icon'
-
-// ** Configs
 import themeConfig from 'src/configs/themeConfig'
-
-// ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
-
-// ** Hooks
 import { useSettings } from 'src/@core/hooks/useSettings'
+
+import { useHttp } from 'src/@core/utils/api_intercepters';
 
 // ** Styled Components
 const RegisterIllustration = styled('img')({
@@ -65,9 +47,13 @@ const LinkStyled = styled(Link)(({ theme }) => ({
 const RegisterV2 = () => {
   // ** States
   const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
     password: '',
     showPassword: false
   })
+  const [buttonLoading, setButtonLoading] = useState(false)
 
   // ** Hooks
   const theme = useTheme()
@@ -84,6 +70,45 @@ const RegisterV2 = () => {
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setOpenSnackbar(false);
+  };
+
+  const router = useRouter();
+  const useHttpMethod = useHttp();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarValues, setSnackbarValues] = useState({
+    message: '',
+    severity: '',
+  })
+  const handleFormSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      const requestData = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        password: values.password
+      };
+
+      setButtonLoading(true)
+
+      useHttpMethod.post('/user/auth/signup', requestData).then((res) => {
+        if (res.statusCode !== 200) {
+          setSnackbarValues({ message: res.message, severity: 'error' })
+          setOpenSnackbar(true)
+        } else {
+          setSnackbarValues({ message: res.message, severity: 'success' })
+          setOpenSnackbar(true)
+        }
+        setButtonLoading(false)
+      });
+    } catch (err) {
+
+    }
+  };
 
   return (
     <Box className='content-right'>
@@ -134,12 +159,22 @@ const RegisterV2 = () => {
           <Typography variant='h6' sx={{ mb: 1.5 }}>
             Adventure starts here 🚀
           </Typography>
-          <Typography sx={{ mb: 6, color: 'text.secondary' }}>Make your app management easy and fun!</Typography>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='username' label='Username' sx={{ mb: 4 }} />
-            <TextField fullWidth type='email' label='Email' sx={{ mb: 4 }} />
+          <Typography sx={{ mb: 6, color: 'text.secondary' }}>Make your crypto management easy and fun!</Typography>
+          <form noValidate autoComplete='off' onSubmit={(e) => { handleFormSubmit(e) }}>
+            <TextField autoFocus fullWidth id='firstName' label='First name *' sx={{ mb: 4 }}
+              value={values.firstName}
+              onChange={handleChange('firstName')}
+            />
+            <TextField autoFocus fullWidth id='lastName' label='Last name' sx={{ mb: 4 }}
+              value={values.lastName}
+              onChange={handleChange('lastName')}
+            />
+            <TextField fullWidth type='email' label='Email *' sx={{ mb: 4 }}
+              value={values.email}
+              onChange={handleChange('email')}
+            />
             <FormControl fullWidth>
-              <InputLabel htmlFor='auth-register-v2-password'>Password</InputLabel>
+              <InputLabel htmlFor='auth-register-v2-password'>Password *</InputLabel>
               <OutlinedInput
                 label='Password'
                 value={values.password}
@@ -160,7 +195,7 @@ const RegisterV2 = () => {
                 }
               />
             </FormControl>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox />}
               sx={{
                 mb: 4,
@@ -175,16 +210,19 @@ const RegisterV2 = () => {
                   </LinkStyled>
                 </>
               }
-            />
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
+            /> */}
+            {/* <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4, mt: 4 }}>
               Sign up
-            </Button>
+            </Button> */}
+            <LoadingButton fullWidth size="large" color="secondary" type='submit' loading={buttonLoading} variant="contained" sx={{ mb: 4, mt: 4 }} >
+              <span>Sign up</span>
+            </LoadingButton>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ mr: 2 }}>
                 Already have an account?
               </Typography>
               <Typography variant='body2'>
-                <LinkStyled href='/pages/auth/login-v2'>Sign in instead</LinkStyled>
+                <LinkStyled href='/auth/login'>Sign in instead</LinkStyled>
               </Typography>
             </Box>
             <Divider sx={{ my: `${theme.spacing(6)} !important` }}>or</Divider>
@@ -210,6 +248,14 @@ const RegisterV2 = () => {
           </form>
         </Box>
       </RightWrapper>
+
+      <Fragment>
+        <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
+          <Alert variant='filled' elevation={skin === 'bordered' ? 0 : 3} onClose={handleClose} severity={snackbarValues?.severity}>
+            {snackbarValues?.message}
+          </Alert>
+        </Snackbar>
+      </Fragment>
     </Box>
   )
 }

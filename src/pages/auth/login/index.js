@@ -1,17 +1,19 @@
 
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 
 import {
-  Button, Divider, Checkbox, TextField, InputLabel, IconButton, Typography, Box, FormControl, useMediaQuery, OutlinedInput, InputAdornment, FormControlLabel
+  Button, Divider, Checkbox, TextField, InputLabel, IconButton, Typography, Box, FormControl, useMediaQuery, OutlinedInput, InputAdornment, FormControlLabel, Stack, Snackbar, Alert
 } from '@mui/material'
 import {
   styled, useTheme
 } from '@mui/material/styles'
+import LoadingButton from '@mui/lab/LoadingButton';
+
+import { useHttp } from 'src/@core/utils/api_intercepters';
 
 import Icon from 'src/@core/components/icon'
-import { useHttp } from 'src/@core/utils/api_intercepters';
 import themeConfig from 'src/configs/themeConfig'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 import { useSettings } from 'src/@core/hooks/useSettings'
@@ -51,9 +53,17 @@ const LoginV2 = () => {
   const [values, setValues] = useState({
     email: '',
     password: '',
+    remember: false,
     showPassword: false
   })
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
   // ** Hook
   const theme = useTheme()
   const { settings } = useSettings()
@@ -65,13 +75,23 @@ const LoginV2 = () => {
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
   }
+  const [buttonLoading, setButtonLoading] = useState(false)
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
 
+  const handleClickRememberPassword = () => {
+    setValues({ ...values, remember: !values.remember })
+  }
+
   const router = useRouter();
   const useHttpMethod = useHttp();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarValues, setSnackbarValues] = useState({
+    message: '',
+    severity: '',
+  })
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault()
@@ -81,18 +101,24 @@ const LoginV2 = () => {
         remember: false
       };
 
+      setButtonLoading(true)
+
       useHttpMethod.post('/user/auth/signin', requestData).then((res) => {
         if (res.statusCode !== 200) {
+          setSnackbarValues({ message: res.message, severity: 'error' })
+          setOpenSnackbar(true)
         } else {
           localStorage.setItem('token', res.payload.token);
           router.push('/dashboard/overview')
         }
-
+        setButtonLoading(false)
       });
     } catch (err) {
 
     }
   };
+
+
 
   return (
     <Box className='content-right'>
@@ -179,19 +205,23 @@ const LoginV2 = () => {
               <FormControlLabel
                 label='Remember Me'
                 control={<Checkbox />}
+                // onClick={handleClickRememberPassword}
                 sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.875rem', color: 'text.secondary' } }}
               />
-              <LinkStyled href='/pages/auth/forgot-password-v2'>Forgot Password?</LinkStyled>
+              <LinkStyled href='/auth/forgot-password'>Forgot Password?</LinkStyled>
             </Box>
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
+            {/* <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
               Sign in
-            </Button>
+            </Button> */}
+            <LoadingButton fullWidth size="large" color="secondary" type='submit' loading={buttonLoading} variant="contained" sx={{ mb: 4 }} >
+              <span>Save</span>
+            </LoadingButton>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ mr: 2 }}>
                 New on our platform?
               </Typography>
               <Typography>
-                <LinkStyled href='/pages/auth/register-v2'>Create an account</LinkStyled>
+                <LinkStyled href='/auth/register'>Create an account</LinkStyled>
               </Typography>
             </Box>
             <Divider sx={{ my: `${theme.spacing(6)} !important` }}>or</Divider>
@@ -216,11 +246,19 @@ const LoginV2 = () => {
             </Box>
           </form>
         </Box>
-      </RightWrapper>
-    </Box>
+      </RightWrapper >
+
+      <Fragment>
+        <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
+          <Alert variant='filled' elevation={skin === 'bordered' ? 0 : 3} onClose={handleClose} severity={snackbarValues?.severity}>
+            {snackbarValues?.message}
+          </Alert>
+        </Snackbar>
+      </Fragment>
+    </Box >
   )
 }
-LoginV2.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
+LoginV2.getLayout = page => <BlankLayout>{page}</BlankLayout>
 export default LoginV2
 
