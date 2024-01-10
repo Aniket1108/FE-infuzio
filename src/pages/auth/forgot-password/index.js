@@ -1,24 +1,16 @@
 // ** Next Import
 import Link from 'next/link'
+import { useState, Fragment } from 'react';
+import { useRouter } from 'next/router';
+import { useHttp } from 'src/@core/utils/api_intercepters';
 
-// ** MUI Components
-import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { Button, TextField, Box, Typography, useMediaQuery, Snackbar, Alert } from '@mui/material'
 import { styled, useTheme } from '@mui/material/styles'
+import LoadingButton from '@mui/lab/LoadingButton';
 
-// ** Icon Imports
 import Icon from 'src/@core/components/icon'
-
-// ** Configs
 import themeConfig from 'src/configs/themeConfig'
-
-// ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
-
-// ** Hooks
 import { useSettings } from 'src/@core/hooks/useSettings'
 
 // Styled Components
@@ -61,6 +53,47 @@ const ForgotPasswordV2 = () => {
 
   // ** Var
   const { skin } = settings
+
+  const [values, setValues] = useState({ email: '' })
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value })
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  const [buttonLoading, setButtonLoading] = useState(false)
+  const router = useRouter();
+  const useHttpMethod = useHttp();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarValues, setSnackbarValues] = useState({
+    message: '',
+    severity: '',
+  })
+  const handleFormSubmit = async (e) => {
+    try {
+      e.preventDefault()
+
+      setButtonLoading(true)
+
+      useHttpMethod.get(`/user/auth/generate-reset-password-token?email=${values.email}`).then((res) => {
+        if (res.statusCode !== 200) {
+          setSnackbarValues({ message: res.message, severity: 'error' })
+          setOpenSnackbar(true)
+        } else {
+          router.push('/auth/verify-email')
+        }
+        setButtonLoading(false)
+      });
+    } catch (err) {
+
+    }
+  };
 
   return (
     <Box className='content-right'>
@@ -114,11 +147,17 @@ const ForgotPasswordV2 = () => {
           <Typography sx={{ mb: 6, color: 'text.secondary' }}>
             Enter your email and we&prime;ll send you instructions to reset your password
           </Typography>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus type='email' label='Email' sx={{ display: 'flex', mb: 6 }} />
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
+          <form noValidate autoComplete='off' onSubmit={(e) => { handleFormSubmit(e) }}>
+            <TextField autoFocus type='email' label='Email' sx={{ display: 'flex', mb: 6 }}
+              value={values.email}
+              onChange={handleChange('email')}
+            />
+            {/* <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
               Send reset link
-            </Button>
+            </Button> */}
+            <LoadingButton fullWidth size="large" color="secondary" type='submit' loading={buttonLoading} variant="contained" sx={{ mb: 4 }} >
+              <span>Send reset link</span>
+            </LoadingButton>
             <Typography variant='body2' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <LinkStyled href='/pages/auth/login-v2'>
                 <Icon icon='bx:chevron-left' />
@@ -128,6 +167,14 @@ const ForgotPasswordV2 = () => {
           </form>
         </Box>
       </RightWrapper>
+
+      <Fragment>
+        <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
+          <Alert variant='filled' elevation={skin === 'bordered' ? 0 : 3} onClose={handleClose} severity={snackbarValues?.severity}>
+            {snackbarValues?.message}
+          </Alert>
+        </Snackbar>
+      </Fragment>
     </Box>
   )
 }

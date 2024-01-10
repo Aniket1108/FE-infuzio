@@ -112,14 +112,14 @@ const VerifyEmailV2 = () => {
           <Button fullWidth variant='contained' sx={{ mb: 4 }}>
             Skip for now
           </Button>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Typography sx={{ mr: 1 }} variant='body2'>
               Didn't get the mail?
             </Typography>
             <LinkStyled href='/' onClick={e => e.preventDefault()}>
               Resend
             </LinkStyled>
-          </Box>
+          </Box> */}
         </Box>
       </RightWrapper>
     </Box>
