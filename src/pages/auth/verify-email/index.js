@@ -1,5 +1,6 @@
 // ** Next Import
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 // ** MUI Components
 import Button from '@mui/material/Button'
@@ -56,6 +57,9 @@ const VerifyEmailV2 = () => {
   // ** Var
   const { skin } = settings
 
+  const router = useRouter();
+  const { email } = router.query;
+
   return (
     <Box className='content-right'>
       {!hidden ? (
@@ -106,10 +110,12 @@ const VerifyEmailV2 = () => {
             Verify your email ✉️
           </Typography>
           <Typography sx={{ mb: 6, color: 'text.secondary' }}>
-            Account activation link sent to your email address: <strong>john.doe@email.com</strong> Please follow the
+            Account activation link sent to your email address: <strong>{email ? email : " "}</strong> Please follow the
             link inside to continue.
           </Typography>
-          <Button fullWidth variant='contained' sx={{ mb: 4 }}>
+          <Button fullWidth variant='contained' sx={{ mb: 4 }}
+            onClick={() => router.push('/auth/login')}
+          >
             Skip for now
           </Button>
           {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

@@ -1,9 +1,20 @@
-// const Home = () => {
-//   return <>Home Page</>
-// }
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-// export default Home
+import BlankLayout from 'src/@core/layouts/BlankLayout'
 
-const Component = () => <h1>Component</h1>
+const HomePage = () => {
 
-export default Component
+    const router = useRouter()
+
+    useEffect(() => {
+        router.push('/auth/login')
+    }, [])
+
+    return (
+        <></>
+    )
+}
+
+HomePage.getLayout = page => <BlankLayout>{page}</BlankLayout>
+export default HomePage

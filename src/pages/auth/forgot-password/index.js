@@ -86,7 +86,7 @@ const ForgotPasswordV2 = () => {
           setSnackbarValues({ message: res.message, severity: 'error' })
           setOpenSnackbar(true)
         } else {
-          router.push('/auth/verify-email')
+          router.push(`/auth/verify-email?email=${res.payload[0]}`)
         }
         setButtonLoading(false)
       });
@@ -159,7 +159,7 @@ const ForgotPasswordV2 = () => {
               <span>Send reset link</span>
             </LoadingButton>
             <Typography variant='body2' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <LinkStyled href='/pages/auth/login-v2'>
+              <LinkStyled href='/auth/login'>
                 <Icon icon='bx:chevron-left' />
                 <span>Back to login</span>
               </LinkStyled>

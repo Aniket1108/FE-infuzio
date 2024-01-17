@@ -1,34 +1,21 @@
 // ** React Imports
-import { useState } from 'react'
-
-// ** Next Import
+import { useState, useEffect, Fragment } from 'react'
+import { useRouter } from 'next/router';
 import Link from 'next/link'
 
-// ** MUI Components
-import Button from '@mui/material/Button'
-import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import FormControl from '@mui/material/FormControl'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import OutlinedInput from '@mui/material/OutlinedInput'
+import {
+  Button, Snackbar, Alert, InputLabel, IconButton, Box, Typography, FormControl, useMediaQuery, OutlinedInput, InputAdornment
+} from '@mui/material'
 import { styled, useTheme } from '@mui/material/styles'
-import InputAdornment from '@mui/material/InputAdornment'
+import LoadingButton from '@mui/lab/LoadingButton';
 
-// ** Icon Imports
+import { useHttp } from 'src/@core/utils/api_intercepters';
+
 import Icon from 'src/@core/components/icon'
-
-// ** Configs
 import themeConfig from 'src/configs/themeConfig'
-
-// ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
-
-// ** Hooks
 import { useSettings } from 'src/@core/hooks/useSettings'
 
-// ** Styled Components
 const ResetPasswordIllustration = styled('img')({
   height: 'auto',
   maxWidth: '100%'
@@ -70,6 +57,71 @@ const ResetPasswordV2 = () => {
     showConfirmNewPassword: false
   })
 
+  const router = useRouter();
+  const { index } = router.query;
+
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    if (index) {
+      setToken(index);
+    }
+  }, [index]);
+
+  const [buttonLoading, setButtonLoading] = useState(false)
+
+  const useHttpMethod = useHttp();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarValues, setSnackbarValues] = useState({
+    message: '',
+    severity: '',
+  })
+  const resetPassword = async (e) => {
+    e.preventDefault();
+    setButtonLoading(true)
+    const { newPassword, confirmNewPassword } = values;
+
+    if (newPassword !== confirmNewPassword) {
+      setSnackbarValues({
+        message: 'Password and Confirm Password must be same.',
+        severity: 'error',
+      })
+      setOpenSnackbar(true);
+      return;
+    }
+
+    const data = {
+      newPassword,
+      token
+    }
+
+    try {
+      const response = await useHttpMethod.post('/user/auth/reset-password', data);
+      if (response.statusCode === 200) {
+        setSnackbarValues({
+          message: response.message,
+          severity: 'success',
+        })
+        setOpenSnackbar(true);
+        router.push('/auth/login');
+      } else {
+        setSnackbarValues({
+          message: response.message,
+          severity: 'error',
+        })
+        setOpenSnackbar(true);
+      }
+      setButtonLoading(false)
+    } catch (error) {
+      setButtonLoading(false)
+      setSnackbarValues({
+        message: error.message,
+        severity: 'error',
+      })
+      setOpenSnackbar(true);
+    }
+  }
+
   // ** Hooks
   const theme = useTheme()
   const { settings } = useSettings()
@@ -95,6 +147,14 @@ const ResetPasswordV2 = () => {
   const handleClickShowConfirmNewPassword = () => {
     setValues({ ...values, showConfirmNewPassword: !values.showConfirmNewPassword })
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
 
   return (
     <Box className='content-right'>
@@ -146,9 +206,9 @@ const ResetPasswordV2 = () => {
             Reset Password 🔒
           </Typography>
           <Typography sx={{ mb: 6, color: 'text.secondary' }}>
-            for <strong>john.doe@email.com</strong>
+            {/* for <strong>john.doe@email.com</strong> */}
           </Typography>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+          <form noValidate autoComplete='off' onSubmit={(e) => { resetPassword(e) }}>
             <FormControl sx={{ display: 'flex', mb: 4 }}>
               <InputLabel htmlFor='auth-reset-password-v2-new-password'>New Password</InputLabel>
               <OutlinedInput
@@ -194,11 +254,16 @@ const ResetPasswordV2 = () => {
                 }
               />
             </FormControl>
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
+            {/* <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
               Set New Password
-            </Button>
+            </Button> */}
+
+            <LoadingButton fullWidth size="large" color="secondary" type='submit' loading={buttonLoading} variant="contained" sx={{ mb: 4 }} >
+              <span>Set New Password</span>
+            </LoadingButton>
+
             <Typography variant='body2' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <LinkStyled href='/pages/auth/login-v2'>
+              <LinkStyled href='/auth/login'>
                 <Icon icon='bx:chevron-left' />
                 <span>Back to login</span>
               </LinkStyled>
@@ -206,6 +271,14 @@ const ResetPasswordV2 = () => {
           </form>
         </Box>
       </RightWrapper>
+
+      <Fragment>
+        <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
+          <Alert variant='filled' elevation={skin === 'bordered' ? 0 : 3} onClose={handleClose} severity={snackbarValues?.severity}>
+            {snackbarValues?.message}
+          </Alert>
+        </Snackbar>
+      </Fragment>
     </Box>
   )
 }
