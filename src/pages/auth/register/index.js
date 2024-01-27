@@ -225,8 +225,8 @@ const RegisterV2 = () => {
                 <LinkStyled href='/auth/login'>Sign in instead</LinkStyled>
               </Typography>
             </Box>
-            <Divider sx={{ my: `${theme.spacing(6)} !important` }}>or</Divider>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* <Divider sx={{ my: `${theme.spacing(6)} !important` }}>or</Divider> */}
+            {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <IconButton href='/' component={Link} sx={{ color: '#497ce2' }} onClick={e => e.preventDefault()}>
                 <Icon icon='bxl:facebook-circle' />
               </IconButton>
@@ -244,7 +244,7 @@ const RegisterV2 = () => {
               <IconButton href='/' component={Link} sx={{ color: '#db4437' }} onClick={e => e.preventDefault()}>
                 <Icon icon='bxl:google' />
               </IconButton>
-            </Box>
+            </Box> */}
           </form>
         </Box>
       </RightWrapper>

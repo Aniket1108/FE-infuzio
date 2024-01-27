@@ -104,6 +104,10 @@ const LoginV2 = () => {
       setButtonLoading(true)
 
       useHttpMethod.post('/user/auth/signin', requestData).then((res) => {
+        if (res.statusCode === 403) {
+          router.push('/auth/verify-email')
+        }
+
         if (res.statusCode !== 200) {
           setSnackbarValues({ message: res.message, severity: 'error' })
           setOpenSnackbar(true)
@@ -224,8 +228,8 @@ const LoginV2 = () => {
                 <LinkStyled href='/auth/register'>Create an account</LinkStyled>
               </Typography>
             </Box>
-            <Divider sx={{ my: `${theme.spacing(6)} !important` }}>or</Divider>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* <Divider sx={{ my: `${theme.spacing(6)} !important` }}>or</Divider> */}
+            {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <IconButton href='/' component={Link} sx={{ color: '#497ce2' }} onClick={e => e.preventDefault()}>
                 <Icon icon='bxl:facebook-circle' />
               </IconButton>
@@ -243,7 +247,7 @@ const LoginV2 = () => {
               <IconButton href='/' component={Link} sx={{ color: '#db4437' }} onClick={e => e.preventDefault()}>
                 <Icon icon='bxl:google' />
               </IconButton>
-            </Box>
+            </Box> */}
           </form>
         </Box>
       </RightWrapper >

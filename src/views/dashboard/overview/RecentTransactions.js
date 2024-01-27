@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
@@ -12,46 +14,23 @@ import OptionsMenu from 'src/@core/components/option-menu'
 import CustomAvatar from 'src/@core/components/mui/avatar'
 import Icon from 'src/@core/components/icon'
 
-const data = [
-    {
-        title: 'Paypal',
-        amount: '+82.6',
-        subtitle: 'Send money ',
-        imgSrc: '/images/cards/paypal.png'
-    },
-    {
-        title: 'Wallet',
-        amount: '+270.69',
-        subtitle: "Mac'D",
-        imgSrc: '/images/cards/wallet.png'
-    },
-    {
-        title: 'Transfer',
-        amount: '+637.91',
-        subtitle: 'Refund',
-        imgSrc: '/images/cards/chart.png'
-    },
-    {
-        amount: '-838.71',
-        title: 'Credit Card',
-        subtitle: 'Ordered Food',
-        imgSrc: '/images/cards/credit-card.png'
-    },
-    {
-        title: 'Wallet',
-        amount: '+203.33',
-        subtitle: 'Starbucks',
-        imgSrc: '/images/cards/wallet.png'
-    },
-    {
-        amount: '-92.45',
-        title: 'Mastercard',
-        subtitle: 'Ordered Food',
-        imgSrc: '/images/cards/atm-card.png'
-    }
-]
+import { useHttp } from 'src/@core/utils/api_intercepters';
+
 
 const RecentTransactions = () => {
+
+    const useHttpMethod = useHttp();
+    const [recentTransactions, setRecentTransactions] = useState(null);
+
+    useEffect(() => {
+        useHttpMethod.post('/app/wallet/transaction-history-faucetpay', {
+            "page": 1,
+            "limit": 5
+        }).then((res) => {
+            setRecentTransactions(res.payload.result);
+        });
+    }, []);
+
     return (
         <Card>
             <Box sx={{
@@ -63,23 +42,25 @@ const RecentTransactions = () => {
                 height: 55
             }}>
                 <Typography variant='body1'>Recent Transactions</Typography>
-                <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+                {/* <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
                     <OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Edit']} />
-                </Box>
+                </Box> */}
             </Box>
             <Divider />
             <CardContent>
-                {data.map((item, index) => {
+                {recentTransactions?.map((item, index) => {
                     return (
                         <Box
                             key={index}
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                mb: index !== data.length - 1 ? 6 : undefined
+                                mb: index !== recentTransactions.length - 1 ? 6 : undefined
                             }}
                         >
-                            <Avatar src={item.imgSrc} variant='rounded' sx={{ mr: 3.5, width: 38, height: 38 }} />
+                            <Avatar variant='rounded' sx={{ mr: 3.5, width: 38, height: 38 }} >
+                                <Icon icon='prime:send' />
+                            </Avatar>
                             <Box
                                 sx={{
                                     width: '100%',
@@ -91,13 +72,13 @@ const RecentTransactions = () => {
                             >
                                 <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
                                     <Typography variant='body2' sx={{ mb: 0.5, color: 'text.disabled' }}>
-                                        {item.title}
+                                        {item.crypto}
                                     </Typography>
-                                    <Typography sx={{ fontWeight: 500 }}>{item.subtitle}</Typography>
+                                    <Typography sx={{ fontWeight: 500 }}>USDT</Typography>
                                 </Box>
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Typography sx={{ mr: 3, fontWeight: 500 }}>{item.amount}</Typography>
-                                    <Typography sx={{ color: 'text.disabled' }}>USD</Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', }}>
+                                    <Typography sx={{ mr: 3, fontWeight: 500 }}>{item.inDecimal}</Typography>
+                                    {/* <Typography sx={{ color: 'text.disabled', fontSize: 14 }}>USDT</Typography> */}
                                 </Box>
                             </Box>
                         </Box>
