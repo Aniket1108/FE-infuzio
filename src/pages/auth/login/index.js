@@ -218,7 +218,7 @@ const LoginV2 = () => {
               Sign in
             </Button> */}
             <LoadingButton fullWidth size="large" color="secondary" type='submit' loading={buttonLoading} variant="contained" sx={{ mb: 4 }} >
-              <span>Save</span>
+              <span>Login</span>
             </LoadingButton>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ mr: 2 }}>

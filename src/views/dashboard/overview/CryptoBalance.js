@@ -83,12 +83,7 @@ const CryptoBalance = () => {
           }}
         >
           <Typography variant='body1'>Recent Earnings</Typography>
-          <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-            <Typography variant='body2'>Add New Wallet</Typography>
-            <CustomAvatar skin='light' color='warning' sx={{ ml: 3.75 }} variant='rounded'>
-              <Icon icon='ph:plus-fill' />
-            </CustomAvatar>
-          </Box>
+
         </Box>
         <Divider sx={{ mb: 3 }} />
         <Table>

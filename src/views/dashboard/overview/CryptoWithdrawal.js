@@ -35,6 +35,7 @@ const CryptoWithdrawal = () => {
 
     console.log(values)
 
+    const [buttonLoading, setButtonLoading] = useState(false)
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarValues, setSnackbarValues] = useState({
         message: '',
@@ -52,6 +53,8 @@ const CryptoWithdrawal = () => {
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value })
     }
+
+    setButtonLoading(true)
 
     const useHttpMethod = useHttp()
 
@@ -90,6 +93,7 @@ const CryptoWithdrawal = () => {
                 withdrawAddress: '',
                 amount: '',
             })
+            setButtonLoading(false)
 
         })
     }
@@ -115,11 +119,11 @@ const CryptoWithdrawal = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Password Requirements:</Typography>
+                            <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Withdrawal Requirements:</Typography>
                             <Box component='ul' sx={{ pl: 4, mb: 0, '& li': { mb: 1, color: 'text.secondary' } }}>
-                                <li>Minimum 8 characters long - the more, the better</li>
-                                <li>At least one lowercase & one uppercase character</li>
-                                <li>At least one number, symbol, or whitespace character</li>
+                                <li>use faucetpay address</li>
+                                <li>once withdraw it cannot be undone.</li>
+
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
