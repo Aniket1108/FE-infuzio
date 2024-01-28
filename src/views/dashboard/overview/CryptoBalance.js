@@ -17,6 +17,7 @@ import {
   TableContainer,
   Divider
 } from '@mui/material'
+import TablePagination from '@mui/material/TablePagination';
 import { useTheme } from '@mui/material/styles'
 
 import { useHttp } from 'src/@core/utils/api_intercepters'
@@ -43,24 +44,33 @@ const CryptoBalance = () => {
 
   const useHttpMethod = useHttp()
   const [allBalance, setAllBalance] = useState(null)
+  const [page, setPage] = useState(0);
+  console.log("page", page)
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
   useEffect(() => {
-    useHttpMethod
-      .post('/app/wallet/earning-history', {
-        page: 1,
-        limit: 5
-      })
-      .then(res => {
-        console.log(res)
-        if (res.statusCode !== 200) {
-          // setOpenSnackbar(true);
-        }
-        setAllBalance(res.payload)
-      })
-  }, [])
+    useHttpMethod.post('/app/wallet/earning-history', {
+      page: page + 1,
+      limit: 5
+    }).then(res => {
+      console.log(res)
+      if (res.statusCode !== 200) {
+        // setOpenSnackbar(true);
+      }
+      setAllBalance(res.payload)
+    })
+  }, [page])
 
   return (
-    <Card>
+    <Card sx={{
+      height: '430px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+    }} >
       <TableContainer>
         <Box
           sx={{
@@ -136,6 +146,16 @@ const CryptoBalance = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={9}
+        rowsPerPage={5}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={5}
+      />
     </Card>
   )
 }

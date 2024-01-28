@@ -24,7 +24,7 @@ const Overview = () => {
         <Grid item xs={12} md={8}>
           <CryptoBalance />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} >
           <RecentTransactions />
         </Grid>
         <Grid item xs={12} md={8}>

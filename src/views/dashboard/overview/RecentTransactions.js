@@ -32,7 +32,9 @@ const RecentTransactions = () => {
     }, []);
 
     return (
-        <Card>
+        <Card sx={{
+            height: '430px'
+        }} >
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
