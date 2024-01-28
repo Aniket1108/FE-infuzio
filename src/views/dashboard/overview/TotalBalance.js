@@ -24,7 +24,7 @@ const TotalBalance = () => {
 
     useEffect(() => {
         useHttpMethod.get('/app/wallet/total-balance').then((res) => {
-            // console.log(res.payload);
+            if (res.statusCode !== 200) return
             setTotalBalance(res.payload);
         });
     }, []);
