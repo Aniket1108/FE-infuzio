@@ -15,6 +15,7 @@ import FormControl from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
 import FormHelperText from '@mui/material/FormHelperText'
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import {
     TextField, Snackbar, Alert
@@ -32,8 +33,6 @@ const CryptoWithdrawal = () => {
         withdrawAddress: '',
         amount: null,
     })
-
-    console.log(values)
 
     const [buttonLoading, setButtonLoading] = useState(false)
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -54,12 +53,12 @@ const CryptoWithdrawal = () => {
         setValues({ ...values, [prop]: event.target.value })
     }
 
-    setButtonLoading(true)
 
     const useHttpMethod = useHttp()
 
     const withdrawAmount = (e) => {
         e.preventDefault()
+        setButtonLoading(true)
 
         if (values.withdrawAddress === '' || values.amount === null) {
             setSnackbarValues({
@@ -67,6 +66,7 @@ const CryptoWithdrawal = () => {
                 severity: 'error'
             })
             setOpenSnackbar(true)
+            setButtonLoading(false)
             return
         }
 
@@ -74,6 +74,8 @@ const CryptoWithdrawal = () => {
             address: values.withdrawAddress,
             amount: values.amount
         }).then(res => {
+            setButtonLoading(false)
+
             if (res.statusCode !== 200) {
                 setSnackbarValues({
                     message: res.message,
@@ -93,7 +95,6 @@ const CryptoWithdrawal = () => {
                 withdrawAddress: '',
                 amount: '',
             })
-            setButtonLoading(false)
 
         })
     }
@@ -127,9 +128,9 @@ const CryptoWithdrawal = () => {
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button variant='contained' type='submit' sx={{ mr: 3 }}>
-                                Withdraw
-                            </Button>
+                            <LoadingButton fullWidth size="large" color="secondary" type='submit' loading={buttonLoading} variant="contained" >
+                                <span>Withdraw</span>
+                            </LoadingButton>
                         </Grid>
                     </Grid>
                 </form>
