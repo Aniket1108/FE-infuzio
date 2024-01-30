@@ -113,6 +113,7 @@ const LoginV2 = () => {
           setOpenSnackbar(true)
         } else {
           localStorage.setItem('token', res.payload.token);
+          localStorage.setItem('userData', JSON.stringify(res.payload));
           router.push('/dashboard/overview')
         }
         setButtonLoading(false)

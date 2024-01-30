@@ -47,6 +47,20 @@ const navigation = () => {
       ]
     },
     {
+      title: 'Settings',
+      icon: 'bx:cog',
+      children: [
+        {
+          title: 'Account',
+          path: '/settings/account'
+        },
+        {
+          title: 'Security',
+          path: '/settings/security'
+        },
+      ]
+    },
+    {
       sectionTitle: '**********--------trial---------*********'
     },
     {
