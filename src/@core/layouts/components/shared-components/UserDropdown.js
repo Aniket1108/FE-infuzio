@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, Fragment } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 
 // ** Next Import
 import { useRouter } from 'next/router'
@@ -35,6 +35,12 @@ const UserDropdown = props => {
 
   // ** States
   const [anchorEl, setAnchorEl] = useState(null)
+
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+  }
+  );
 
   // ** Hooks
   const router = useRouter()
@@ -75,6 +81,19 @@ const UserDropdown = props => {
     router.push('/auth/login')
   }
 
+  useEffect(() => {
+    const storedUserDataString = localStorage.getItem('userData') ?? null;
+    if (storedUserDataString) {
+      try {
+        const storedUserData = JSON.parse(storedUserDataString);
+
+        setUserData({ ...data, ...storedUserData });
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+      }
+    }
+  }, []);
+
   return (
     <Fragment>
       <Badge
@@ -89,7 +108,7 @@ const UserDropdown = props => {
       >
         <Avatar
           alt='John Doe'
-          src='/images/avatars/1.png'
+          src='/images/avatars/user1.png'
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
         />
@@ -112,18 +131,18 @@ const UserDropdown = props => {
                 horizontal: 'right'
               }}
             >
-              <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
+              <Avatar alt='John Doe' src='/images/avatars/user1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box sx={{ ml: 3, display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 500 }}>John Doe</Typography>
+              <Typography sx={{ fontWeight: 500 }}>{`${userData.firstName} ${userData.lastName}`}</Typography>
               <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-                Admin
+                User
               </Typography>
             </Box>
           </Box>
         </Box>
         <Divider sx={{ mt: '0 !important' }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/user-profile/profile')}>
+        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/settings/account')}>
           <Box sx={styles}>
             <Icon icon='bx:user' />
             Profile
