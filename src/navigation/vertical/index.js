@@ -33,6 +33,10 @@ const navigation = () => {
           path: '/faucet/overview'
         },
         {
+          title: 'Faucet',
+          path: '/faucet/faucet'
+        },
+        {
           title: 'Challenges',
           path: '/faucet/challenges'
         },
@@ -46,19 +50,14 @@ const navigation = () => {
         },
       ]
     },
+
     {
-      title: 'Settings',
-      icon: 'bx:cog',
-      children: [
-        {
-          title: 'Account',
-          path: '/settings/account'
-        },
-        {
-          title: 'Security',
-          path: '/settings/security'
-        },
-      ]
+      sectionTitle: 'Profile & Security'
+    },
+    {
+      title: 'Profile',
+      icon: 'bx:user',
+      path: '/settings/account'
     },
     {
       sectionTitle: '**********--------trial---------*********'

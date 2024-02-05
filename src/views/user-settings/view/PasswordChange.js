@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, useEffect } from 'react'
+import { useState, Fragment } from 'react'
 import { useHttp } from 'src/@core/utils/api_intercepters';
 // ** Next Import
 import Link from 'next/link'
@@ -35,13 +35,9 @@ import Snackbar from '@mui/material/Snackbar';
 import Icon from 'src/@core/components/icon'
 
 
-const UserViewSecurity = () => {
+const PasswordChange = () => {
   // ** States
   const useHttpMethod = useHttp()
-  const [defaultValues, setDefaultValues] = useState({ mobile: '+1(968) 819-2547' })
-  const [mobileNumber, setMobileNumber] = useState(defaultValues.mobile)
-  const [openEditMobileNumber, setOpenEditMobileNumber] = useState(false)
-
 
   const [values, setValues] = useState({
     newPassword: '',
@@ -49,6 +45,26 @@ const UserViewSecurity = () => {
     confirmPassword: '',
     showconfirmPassword: false
   })
+
+  const [buttonLoading, setButtonLoading] = useState(false)
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarValues, setSnackbarValues] = useState({
+    message: '',
+    severity: '',
+  })
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value })
+  }
+
 
   // Handle Password
   const handleNewPasswordChange = prop => event => {
@@ -68,29 +84,87 @@ const UserViewSecurity = () => {
     setValues({ ...values, showconfirmPassword: !values.showconfirmPassword })
   }
 
-  // Handle edit mobile number dialog
-  const handleEditMobileNumberClickOpen = () => setOpenEditMobileNumber(true)
-  const handleEditMobileNumberClose = () => setOpenEditMobileNumber(false)
+  const passwordInput = (e) => {
+    e.preventDefault()
+    setButtonLoading(true)
 
-  // Handle button click inside the dialog
-  const handleCancelClick = () => {
-    setMobileNumber(defaultValues.mobile)
-    handleEditMobileNumberClose()
-  }
+    if (values.newPassword === '' || values.confirmPassword === '') {
+      setSnackbarValues({
+        message: 'Please enter both new password and confirm password.',
+        severity: 'error'
+      })
+      setOpenSnackbar(true)
+      setButtonLoading(false)
+      return
+    }
 
-  const handleSubmitClick = () => {
-    setDefaultValues({ ...defaultValues, mobile: mobileNumber })
-    handleEditMobileNumberClose()
-  }
+    if (values.newPassword !== values.confirmPassword) {
+      setSnackbarValues({
+        message: 'New password and confirm password do not match',
+        severity: 'error'
+      });
+      setOpenSnackbar(true);
+      setButtonLoading(false);
+      return;
+    }
 
-  useEffect(() => {
-    useHttpMethod.post('/user/auth/change-password', {
-      newPassword: values.newPassword,
-      confirmPassword: values.confirmPassword
-    }).then(res => {
-      console.log(res)
-    })
-  }, [values.newPassword, values.confirmPassword])
+    useHttpMethod
+      .post('/user/auth/change-password', {
+        newPassword: values.newPassword,
+        confirmPassword: values.confirmPassword,
+      })
+      .then((res) => {
+        setButtonLoading(false);
+        console.log(res);
+
+        if (res.statusCode !== 200) {
+          setSnackbarValues({
+            message: res.message,
+            severity: 'error',
+          });
+          setOpenSnackbar(true);
+          return;
+        }
+
+        setSnackbarValues({
+          message: 'Password changed successfully',
+          severity: 'success',
+        });
+        setOpenSnackbar(true);
+
+        // Optionally, you may want to reset the password fields
+        setValues({
+          newPassword: '',
+          confirmPassword: '',
+        });
+      })
+      .catch((error) => {
+        setSnackbarValues({
+          message: 'Failed to change password',
+          severity: 'error',
+        });
+        setOpenSnackbar(true);
+        console.error(error);
+      });
+  };
+
+
+
+
+  // useEffect(() => {
+  //   useHttpMethod.post('/user/auth/change-password', {
+  //     newPassword: values.newPassword,
+  //     confirmPassword: values.confirmPassword
+  //   }).then(res => {
+  //     setButtonLoading(false)
+  //     console.log(res)
+  //   }).catch(error => {
+  //     setSnackbarMessage('Failed to change password');
+  //     setSnackbarSeverity('error');
+  //     setSnackbarOpen(true);
+  //     console.error(error);
+  //   });
+  // }, [values.newPassword, values.confirmPassword])
 
   return (
     <Grid container spacing={6}>
@@ -105,9 +179,9 @@ const UserViewSecurity = () => {
               Minimum 8 characters long, uppercase & symbol
             </Alert>
 
-            <form onSubmit={e => e.preventDefault()}>
+            <form onSubmit={(e) => passwordInput(e)}>
               <Grid container spacing={6}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <FormControl fullWidth>
                     <InputLabel htmlFor='user-view-security-new-password'>New Password</InputLabel>
                     <OutlinedInput
@@ -132,7 +206,7 @@ const UserViewSecurity = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <FormControl fullWidth>
                     <InputLabel htmlFor='user-view-security-confirm-new-password'>Confirm New Password</InputLabel>
                     <OutlinedInput
@@ -165,97 +239,17 @@ const UserViewSecurity = () => {
               </Grid>
             </form>
           </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid item xs={12}>
-        <Card>
-          <CardHeader
-            title='Two-step verification'
-            titleTypographyProps={{ sx: { mb: 1 } }}
-            subheader='Keep your account secure with authentication step.'
-          />
-          <CardContent>
-            <Typography sx={{ mb: 2.5, fontWeight: 500 }}>SMS</Typography>
-
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <Typography sx={{ color: 'text.secondary' }}>{mobileNumber}</Typography>
-              <div>
-                <IconButton
-                  size='small'
-                  aria-label='edit'
-                  sx={{ color: 'text.secondary' }}
-                  onClick={handleEditMobileNumberClickOpen}
-                >
-                  <Icon icon='bx:edit' fontSize={20} />
-                </IconButton>
-                <IconButton size='small' aria-label='delete' sx={{ color: 'text.secondary' }}>
-                  <Icon icon='bx:trash-alt' fontSize={20} />
-                </IconButton>
-              </div>
-            </Box>
-
-            <Divider
-              sx={{ mt: theme => `${theme.spacing(2)} !important`, mb: theme => `${theme.spacing(6)} !important` }}
-            />
-
-            <Typography
-              sx={{
-                color: 'text.secondary',
-                '& a': { color: 'text.secondary', textDecoration: 'none', '&:hover': { color: 'primary.main' } }
-              }}
-            >
-              Two-factor authentication adds an additional layer of security to your account by requiring more than just
-              a password to log in.{' '}
-              <Link href='/' onClick={e => e.preventDefault()}>
-                Learn more
-              </Link>
-              .
-            </Typography>
-          </CardContent>
-
-          <Dialog
-            open={openEditMobileNumber}
-            onClose={handleCancelClick}
-            aria-labelledby='user-view-security-edit-mobile-number'
-            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 560, p: [2, 10] } }}
-            aria-describedby='user-view-security-edit-mobile-number-description'
-          >
-            <DialogTitle
-              id='user-view-security-edit-mobile-number'
-              sx={{ mb: 6, textAlign: 'center', fontSize: '1.625rem !important' }}
-            >
-              Enable One Time Password
-            </DialogTitle>
-
-            <DialogContent>
-              <Typography sx={{ mb: 4, fontWeight: 500 }}>Verify Your Mobile Number for SMS</Typography>
-              <Typography sx={{ mb: 6, color: 'text.secondary' }}>
-                Enter your mobile phone number with country code and we will send you a verification code.
-              </Typography>
-              <form onSubmit={e => e.preventDefault()}>
-                <TextField
-                  autoFocus
-                  fullWidth
-                  value={mobileNumber}
-                  label='Mobile number with country code'
-                  onChange={e => setMobileNumber(e.target.value)}
-                />
-                <Box sx={{ mt: 6, display: 'flex' }}>
-                  <Button type='submit' sx={{ mr: 5 }} variant='contained' onClick={handleSubmitClick}>
-                    Submit
-                  </Button>
-                  <Button type='reset' color='secondary' variant='outlined' onClick={handleCancelClick}>
-                    Cancel
-                  </Button>
-                </Box>
-              </form>
-            </DialogContent>
-          </Dialog>
+          <Fragment>
+            <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
+              <Alert variant='filled' elevation={3} onClose={handleClose} severity={snackbarValues?.severity}>
+                {snackbarValues?.message}
+              </Alert>
+            </Snackbar>
+          </Fragment>
         </Card>
       </Grid>
     </Grid>
   )
 }
 
-export default UserViewSecurity
+export default PasswordChange

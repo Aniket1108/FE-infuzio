@@ -42,7 +42,7 @@ const data = {
   role: 'user',
   status: 'active',
   avatarColor: 'primary',
-  avatar: '/images/avatars/profile3.png'
+  avatar: '/images/avatars/user1.png'
 }
 
 const roleColors = {
