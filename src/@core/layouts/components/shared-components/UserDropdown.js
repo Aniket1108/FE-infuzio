@@ -87,7 +87,7 @@ const UserDropdown = props => {
       try {
         const storedUserData = JSON.parse(storedUserDataString);
 
-        setUserData({ ...data, ...storedUserData });
+        setUserData({ ...userData, ...storedUserData });
       } catch (error) {
         console.error('Error parsing user data:', error);
       }

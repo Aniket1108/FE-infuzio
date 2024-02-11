@@ -120,7 +120,7 @@ const UserChallenges = () => {
             headerName: 'Total No. of Count',
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                    {params.row.count}
+                    {params.row.successCount} / {params.row.count}
                 </Typography>
             )
         },
@@ -132,7 +132,7 @@ const UserChallenges = () => {
             headerName: 'Reward',
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                    {params.row.reward}
+                    {params.row.reward} $
                 </Typography>
             )
         },
@@ -152,12 +152,13 @@ const UserChallenges = () => {
 
     const rows = allChallenges.map((item, index) => {
         return {
-            _id: index, // Add a unique id for each row
+            _id: item._id, // Add a unique id for each row
             name: item.name,
             service: item.service,
             count: item.count,
             isCompleted: item.isCompleted,
-            reward: item.reward
+            reward: item.reward,
+            successCount: item.currentSuccessCount
         };
     });
 
@@ -165,7 +166,7 @@ const UserChallenges = () => {
     return (
         <Card>
             <CardHeader
-                title='Column' />
+                title='Challenges' />
             {allChallenges.length > 0 && (
                 <DataGrid
                     autoHeight

@@ -77,12 +77,12 @@ const CardSnippet = props => {
         {...(hidden
           ? {}
           : {
-              action: (
-                <IconButton onClick={() => setShowCode(!showCode)}>
-                  <Icon icon='bx:code' fontSize={20} />
-                </IconButton>
-              )
-            })}
+            action: (
+              <IconButton onClick={() => setShowCode(!showCode)}>
+                <Icon icon='bx:code' fontSize={20} />
+              </IconButton>
+            )
+          })}
       />
       <CardContent>{children}</CardContent>
       {hidden ? null : (
