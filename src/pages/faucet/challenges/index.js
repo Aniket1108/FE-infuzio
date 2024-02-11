@@ -1,5 +1,5 @@
 // import UserChallenges from 'src/views/faucet/challenges'
-import UserChallenges from 'src/views/faucet/challenges/new'
+import UserChallenges from 'src/views/faucet/challenges/new.js'
 
 
 const Challenges = ({ apiData }) => {
