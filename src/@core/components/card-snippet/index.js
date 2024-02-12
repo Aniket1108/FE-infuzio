@@ -30,7 +30,7 @@ const CardSnippet = props => {
 
   // ** States
   const [showCode, setShowCode] = useState(false)
-  const [tabValue, setTabValue] = useState(code.tsx !== null ? 'tsx' : 'jsx')
+  const [tabValue, setTabValue] = useState(code?.tsx !== null ? 'tsx' : 'jsx')
 
   // ** Hooks
   const clipboard = useClipboard()
@@ -42,10 +42,10 @@ const CardSnippet = props => {
   }, [showCode, tabValue])
 
   const codeToCopy = () => {
-    if (code.tsx !== null && tabValue === 'tsx') {
-      return code.tsx.props.children.props.children
-    } else if (code.jsx !== null && tabValue === 'jsx') {
-      return code.jsx.props.children.props.children
+    if (code?.tsx !== null && tabValue === 'tsx') {
+      return code?.tsx.props.children.props.children
+    } else if (code?.jsx !== null && tabValue === 'jsx') {
+      return code?.jsx.props.children.props.children
     } else {
       return ''
     }
@@ -59,8 +59,8 @@ const CardSnippet = props => {
   }
 
   const renderCode = () => {
-    if (code[tabValue] !== null) {
-      return code[tabValue]
+    if (code?.[tabValue] !== null) {
+      return code?.[tabValue]
     } else {
       return null
     }
@@ -77,11 +77,11 @@ const CardSnippet = props => {
         {...(hidden
           ? {}
           : {
-            action: (
-              <IconButton onClick={() => setShowCode(!showCode)}>
-                <Icon icon='bx:code' fontSize={20} />
-              </IconButton>
-            )
+            // action: (
+            //   <IconButton onClick={() => setShowCode(!showCode)}>
+            //     <Icon icon='bx:code' fontSize={20} />
+            //   </IconButton>
+            // )
           })}
       />
       <CardContent>{children}</CardContent>
@@ -98,12 +98,12 @@ const CardSnippet = props => {
                 value={tabValue}
                 onChange={(e, newValue) => (newValue !== null ? setTabValue(newValue) : null)}
               >
-                {code.tsx !== null ? (
+                {code?.tsx !== null ? (
                   <ToggleButton value='tsx'>
                     <Icon icon='bxl:typescript' fontSize={20} />
                   </ToggleButton>
                 ) : null}
-                {code.jsx !== null ? (
+                {code?.jsx !== null ? (
                   <ToggleButton value='jsx'>
                     <Icon icon='bxl:javascript' fontSize={20} />
                   </ToggleButton>

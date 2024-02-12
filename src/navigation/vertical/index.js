@@ -28,10 +28,10 @@ const navigation = () => {
       title: 'Faucet',
       icon: 'bx:bitcoin',
       children: [
-        {
-          title: 'Overview',
-          path: '/faucet/overview'
-        },
+        // {
+        //   title: 'Overview',
+        //   path: '/faucet/overview'
+        // },
         {
           title: 'Faucet',
           path: '/faucet/faucet'

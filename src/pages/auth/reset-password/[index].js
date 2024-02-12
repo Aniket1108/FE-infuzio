@@ -74,7 +74,7 @@ const ResetPasswordV2 = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarValues, setSnackbarValues] = useState({
     message: '',
-    severity: '',
+    severity: 'warning',
   })
   const resetPassword = async (e) => {
     e.preventDefault();

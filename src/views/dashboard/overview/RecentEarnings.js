@@ -38,14 +38,14 @@ const data2 = [
   }
 ]
 
-const CryptoBalance = () => {
+const RecentEarnings = () => {
   // ** Hook
   const theme = useTheme()
 
   const useHttpMethod = useHttp()
   const [allBalance, setAllBalance] = useState(null)
   const [page, setPage] = useState(0);
-  console.log("page", page)
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -149,10 +149,12 @@ const CryptoBalance = () => {
         rowsPerPage={5}
         page={page}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={5}
+        onRowsPerPageChange={() => {
+          return 5
+        }}
       />
     </Card>
   )
 }
 
-export default CryptoBalance
+export default RecentEarnings

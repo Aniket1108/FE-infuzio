@@ -27,18 +27,18 @@ import toast from 'react-hot-toast'
 
 import { useHttp } from 'src/@core/utils/api_intercepters'
 
-const CryptoWithdrawal = () => {
+const CryptoWithdrawal = ({ updateBalance }) => {
     // ** States
     const [values, setValues] = useState({
         withdrawAddress: '',
-        amount: null,
+        amount: '',
     })
 
     const [buttonLoading, setButtonLoading] = useState(false)
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarValues, setSnackbarValues] = useState({
         message: '',
-        severity: '',
+        severity: 'warning',
     })
 
     const handleClose = (event, reason) => {
@@ -84,6 +84,7 @@ const CryptoWithdrawal = () => {
                 setOpenSnackbar(true)
                 return
             }
+            updateBalance();
 
             setSnackbarValues({
                 message: res.message,

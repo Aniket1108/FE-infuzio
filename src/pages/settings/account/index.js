@@ -1,7 +1,6 @@
 import UserView from 'src/views/user-settings/Account'
-import { useEffect } from 'react'
 
-const Account = ({ apiData }) => {
+const Account = () => {
     return (
         <>
             <UserView />
