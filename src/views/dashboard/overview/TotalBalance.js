@@ -17,17 +17,30 @@ const TrophyImg = styled('img')({
     position: 'absolute'
 })
 
-const TotalBalance = () => {
+const TotalBalance = ({ BalanceUpdated }) => {
 
     const useHttpMethod = useHttp();
     const [totalBalance, setTotalBalance] = useState(0.00);
 
     useEffect(() => {
+        fetchTotalBalance();
+    }, [BalanceUpdated]);
+
+    const fetchTotalBalance = () => {
         useHttpMethod.get('/app/wallet/total-balance').then((res) => {
-            if (res.statusCode !== 200) return
+            if (res.statusCode !== 200) return;
             setTotalBalance(res.payload);
         });
-    }, []);
+    };
+
+
+
+    // useEffect(() => {
+    //     useHttpMethod.get('/app/wallet/total-balance').then((res) => {
+    //         if (res.statusCode !== 200) return
+    //         setTotalBalance(res.payload);
+    //     });
+    // }, []);
 
     return (
         <Card sx={{ position: 'relative' }}>

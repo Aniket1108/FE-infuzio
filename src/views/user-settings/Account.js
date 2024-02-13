@@ -6,10 +6,11 @@ import CardSnippet from 'src/@core/components/card-snippet'
 import Typography from '@mui/material/Typography'
 
 // ** Demo Components Imports
-import UserViewLeft from 'src/views/user-settings/view/UserViewLeft'
+import UserViewLeft from 'src/views/user-settings/view/UserViewLeft.js'
+import UserViewSecurity from 'src/views/user-settings/view/UserTabViewSecurity.js'
 // import UserViewRight from 'src/views/user-settings/view/UserViewRight'
 
-import TabsFullWidth from 'src/views/user-settings/view/new'
+// import TabsFullWidth from 'src/views/user-settings/view/new.js'
 import * as source from 'src/views/miscellaneous/TabsSourceCode'
 
 
@@ -23,15 +24,15 @@ const UserView = () => {
                 <CardSnippet
                     title='Security'
                     sx={{ boxShadow: 0, backgroundColor: 'transparent', border: theme => `1px solid ${theme.palette.divider}` }}
-                    code={{
-                        tsx: null,
-                        jsx: source.TabsFullWidthJSXCode
-                    }}
+                // code={{
+                //     tsx: null,
+                //     jsx: source.TabsFullWidthJSXCode
+                // }}
                 >
                     {/* <Typography sx={{ mb: 4 }}>
                         Use <code>variant='fullWidth'</code> prop with <code>TabList</code> component to have full width tabs.
                     </Typography> */}
-                    <TabsFullWidth />
+                    <UserViewSecurity />
                 </CardSnippet>
             </Grid>
 

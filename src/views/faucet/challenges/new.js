@@ -143,7 +143,7 @@ const UserChallenges = () => {
             // field: 'actions',
             headerName: 'Actions',
             renderCell: params => [
-                <Button size='small' variant='outlined' color='secondary' onClick={() => handleClaim(params.row._id)}>
+                <Button key={params.row._id} size='small' variant='outlined' color='secondary' onClick={() => handleClaim(params.row._id)}>
                     Claim
                 </Button>,
             ],

@@ -73,7 +73,7 @@ const ForgotPasswordV2 = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarValues, setSnackbarValues] = useState({
     message: '',
-    severity: '',
+    severity: 'warning',
   })
   const handleFormSubmit = async (e) => {
     try {
