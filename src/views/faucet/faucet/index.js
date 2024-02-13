@@ -10,7 +10,16 @@ import Icon from 'src/@core/components/icon'
 // ** Custom Components Imports
 import CustomAvatar from 'src/@core/components/mui/avatar'
 
+import Recaptcha from "react-google-recaptcha"
+
+
 const FaucetCrypto = () => {
+
+
+    const func = (token) => {
+        console.log('Captcha Changed', token)
+    }
+
     return (
         <Card>
             <CardContent
@@ -31,6 +40,12 @@ const FaucetCrypto = () => {
                 <Typography variant='body2' sx={{ mb: 6 }}>
                     Daily certain amounts of claims will be available.
                 </Typography>
+                <Recaptcha
+                    sitekey='6LfpeHEpAAAAADCs2vk0Aq1_gw0nPCb6-C-ZgEFW'
+                    render="explicit"
+                    theme="dark"
+                    onChange={func}
+                />
                 <Button variant='contained' sx={{ p: theme => theme.spacing(1.75, 5.5) }}>
                     Claim Now
                 </Button>
