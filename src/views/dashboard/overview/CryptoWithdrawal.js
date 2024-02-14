@@ -27,7 +27,7 @@ import toast from 'react-hot-toast'
 
 import { useHttp } from 'src/@core/utils/api_intercepters'
 
-const CryptoWithdrawal = ({ updateBalance }) => {
+const CryptoWithdrawal = () => {
     // ** States
     const [values, setValues] = useState({
         withdrawAddress: '',
@@ -84,7 +84,6 @@ const CryptoWithdrawal = ({ updateBalance }) => {
                 setOpenSnackbar(true)
                 return
             }
-            updateBalance();
 
             setSnackbarValues({
                 message: res.message,

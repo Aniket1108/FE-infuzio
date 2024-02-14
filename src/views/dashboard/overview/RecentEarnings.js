@@ -56,7 +56,7 @@ const RecentEarnings = () => {
       page: page + 1,
       limit: 5
     }).then(res => {
-      console.log(res)
+
       if (res.statusCode !== 200) {
         // setOpenSnackbar(true);
       }
@@ -102,7 +102,7 @@ const RecentEarnings = () => {
               return (
                 <TableRow
                   key={createdAt}
-                  sx={{ '& .MuiTableCell-root': { py: theme => `${theme.spacing(2)} !important` } }}
+                  sx={{ '& .MuiTableCell-root': { '&:first-of-type': { py: theme => `${theme.spacing(2)} !important` } } }}
                 >
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -111,7 +111,7 @@ const RecentEarnings = () => {
                         variant='rounded'
                         sx={{ mr: 2.5, width: 36, height: 36 }}
                         src={
-                          'https://dev-crypto-backend.s3.ap-south-1.amazonaws.com/public_images/crypto_icons/tether.png'
+                          '../../../public/images/Crypto_Icons/USDT.png'
                         }
                       />
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>

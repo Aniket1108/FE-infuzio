@@ -43,8 +43,7 @@ const TabsSimple = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         const decoded = jwtDecode.decode(token);
-        const dynamicUrl = `https://bitcotasks.com//offerwall/09qe9dy1cb0jyo3dj5rtnnqbc4t1rd/${decoded.userId}`;
-        console.log(dynamicUrl)
+        const dynamicUrl = `https://bitcotasks.com//offerwall/${process.env.NEXT_PUBLIC_BITCOTASKS_API_KEY}/${decoded.userId}`;
         setbitcotasksUrl(dynamicUrl);
     }, []);
 

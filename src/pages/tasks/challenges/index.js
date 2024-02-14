@@ -1,8 +1,8 @@
 // import UserChallenges from 'src/views/faucet/challenges'
-import UserChallenges from 'src/views/faucet/challenges/new.js'
+import UserChallenges from 'src/views/tasks/challenges/index.js'
 
 
-const Challenges = ({ apiData }) => {
+const Challenges = () => {
     return (
         <>
             <UserChallenges />
