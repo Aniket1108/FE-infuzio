@@ -1,4 +1,4 @@
-import Offerwalls from 'src/views/faucet/offerwalls'
+import Offerwalls from 'src/views/tasks/offerwalls'
 
 const CardStatistics = ({ apiData }) => {
     return (

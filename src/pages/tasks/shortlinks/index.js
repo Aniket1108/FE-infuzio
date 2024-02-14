@@ -1,6 +1,6 @@
 import { Typography, Grid } from '@mui/material'
 
-import ListShortlinks from 'src/views/faucet/shortlinks/ListShortlinks'
+import ListShortlinks from 'src/views/tasks/shortlinks/ListShortlinks'
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 const CardStatistics = ({ apiData }) => {

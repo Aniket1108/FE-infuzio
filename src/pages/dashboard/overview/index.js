@@ -24,13 +24,13 @@ const Overview = () => {
     <ApexChartWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
-          <TotalBalance balanceUpdated={balanceUpdated} />
+          <TotalBalance />
         </Grid>
         <Grid item xs={12} md={8}>
           {/* <RecentTransactions /> */}
         </Grid>
         <Grid item xs={12} md={8}>
-          <CryptoWithdrawal updateBalance={updateBalance} />
+          <CryptoWithdrawal />
         </Grid>
         <Grid item xs={12} md={8}>
           <RecentEarnings />

@@ -1,6 +1,6 @@
-import FaucetCrypto from 'src/views/faucet/faucet'
+import FaucetCrypto from 'src/views/tasks/faucet'
 
-const Faucet = ({ apiData }) => {
+const Faucet = () => {
     return (
         <>
             <FaucetCrypto />

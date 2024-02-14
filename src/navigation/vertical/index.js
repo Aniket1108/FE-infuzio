@@ -25,7 +25,7 @@ const navigation = () => {
       sectionTitle: 'Invest & Earn'
     },
     {
-      title: 'Faucet',
+      title: 'TASKS',
       icon: 'bx:bitcoin',
       children: [
         // {
@@ -34,19 +34,19 @@ const navigation = () => {
         // },
         {
           title: 'Faucet',
-          path: '/faucet/faucet'
+          path: '/tasks/faucet'
         },
         {
           title: 'Challenges',
-          path: '/faucet/challenges'
+          path: '/tasks/challenges'
         },
         {
           title: 'Offerwalls',
-          path: '/faucet/offerwalls'
+          path: '/tasks/offerwalls'
         },
         {
           title: 'Shortlinks',
-          path: '/faucet/shortlinks'
+          path: '/tasks/shortlinks'
         },
       ]
     },

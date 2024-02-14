@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import { DataGrid } from '@mui/x-data-grid'
+import { Snackbar, Alert, } from '@mui/material';
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -36,10 +37,16 @@ const statusObj = {
 const UserChallenges = () => {
     // ** States
     const [hideNameColumn, setHideNameColumn] = useState(false)
-    const [paginationModel, setPaginationModel] = useState({ pcount: 0, pcountSize: 5 })
+    const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5, })
     const [allChallenges, setAllChallenges] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarValues, setSnackbarValues] = useState({
+        message: '',
+        severity: 'warning',
+    });
 
     const useHttpMethod = useHttp()
 
@@ -48,26 +55,32 @@ const UserChallenges = () => {
 
         useHttpMethod.get('/faucet/earn/list-challenges').then(res => {
             if (res.statusCode !== 200) {
-                // setOpenSnackbar(true);
+                setSnackbarValues({ message: response.message, severity: 'error' });
+                setOpenSnackbar(true);
             }
             setAllChallenges(res.payload)
 
         })
 
-
-
-
-
     }, []);
 
     const handleClaim = async (claimId) => {
         try {
-            // Trigger API for claiming challenge using your custom hook
-            await useHttpMethod.get(`/faucet/earn/claim-challenges?claimId=${claimId}`);
-            // You might want to refresh the data after claiming, you can refetch the data here.
-            // fetchData();
+            const response = await useHttpMethod.get(`/faucet/earn/claim-challenges?claimId=${claimId}`);
+            if (response.statusCode !== 200) {
+                setSnackbarValues({ message: response.message, severity: 'error' });
+                setOpenSnackbar(true);
+            } else {
+                setSnackbarValues({ message: response.message, severity: 'success' });
+                setOpenSnackbar(true);
+                useHttpMethod.get('/faucet/earn/list-challenges').then(res => {
+                    setAllChallenges(res.payload);
+                });
+            }
         } catch (error) {
             console.error('Error claiming challenge:', error);
+            setSnackbarValues({ message: response.message, severity: 'error' });
+            setOpenSnackbar(true);
         }
     };
 
@@ -80,6 +93,7 @@ const UserChallenges = () => {
             minWidth: 100,
             field: 'name',
             headerName: 'Challenge Name',
+            sortable: false,
             renderCell: (params) => (
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
@@ -93,6 +107,7 @@ const UserChallenges = () => {
             minWidth: 120,
             headerName: 'Type of Challenge',
             field: 'service',
+            sortable: false,
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                     {params.row.service}
@@ -100,11 +115,12 @@ const UserChallenges = () => {
             )
         },
         {
-            flex: 0.15,
-            minWidth: 110,
+            flex: 0.1,
+            minWidth: 80,
             field: 'isCompleted',
             headerName: 'Status',
             type: 'singleSelect',
+            sortable: false,
             renderCell: (params) => {
                 const isCompleted = params.row.isCompleted || false;
                 const status = statusObj[isCompleted];
@@ -113,23 +129,25 @@ const UserChallenges = () => {
             },
         },
         {
-            flex: 0.1,
+            flex: 0.15,
             field: 'count',
-            minWidth: 160,
+            minWidth: 180,
             type: 'number',
-            headerName: 'Total No. of Count',
+            headerName: 'Claimed / Total Count',
+            sortable: false,
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                    {params.row.successCount} / {params.row.count}
+                    {params.row.successCount > params.row.count ? params.row.count : params.row.successCount} / {params.row.count}
                 </Typography>
             )
         },
         {
             flex: 0.1,
             field: 'reward',
-            minWidth: 80,
+            minWidth: 100,
             type: 'number',
             headerName: 'Reward',
+            sortable: false,
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                     {params.row.reward} $
@@ -139,9 +157,10 @@ const UserChallenges = () => {
 
         {
             flex: 0.125,
-            minWidth: 140,
-            // field: 'actions',
+            minWidth: 130,
+            field: 'actions',
             headerName: 'Actions',
+            sortable: false,
             renderCell: params => [
                 <Button key={params.row._id} size='small' variant='outlined' color='secondary' onClick={() => handleClaim(params.row._id)}>
                     Claim
@@ -152,7 +171,7 @@ const UserChallenges = () => {
 
     const rows = allChallenges.map((item, index) => {
         return {
-            _id: item._id, // Add a unique id for each row
+            _id: item._id,
             name: item.name,
             service: item.service,
             count: item.count,
@@ -162,25 +181,40 @@ const UserChallenges = () => {
         };
     });
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false);
+    };
 
     return (
-        <Card>
-            <CardHeader
-                title='Challenges' />
-            {allChallenges.length > 0 && (
-                <DataGrid
-                    autoHeight
-                    rows={rows}
-                    columns={columns}
-                    disableRowSelectionOnClick
-                    pcountSizeOptions={[5, 10, 25, 50]}
-                    paginationModel={paginationModel}
-                    onPaginationModelChange={setPaginationModel}
-                    initialState={{ columns: { columnVisibilityModel: { name: hideNameColumn } } }}
-                    getRowId={(row) => row._id}
-                />
-            )}
-        </Card>
+        <Fragment>
+            <Card>
+                <CardHeader
+                    title='Challenges' />
+                {allChallenges.length > 0 && (
+                    <DataGrid
+                        autoHeight
+                        rows={rows}
+                        columns={columns}
+                        disableColumnMenu
+                        disableRowSelectionOnClick
+                        pageSizeOptions={[5, 10, 25, 50]}
+                        // pcountSizeOptions={[5, 10, 25, 50]}
+                        paginationModel={paginationModel}
+                        onPaginationModelChange={setPaginationModel}
+                        initialState={{ columns: { columnVisibilityModel: { name: hideNameColumn } } }}
+                        getRowId={(row) => row._id}
+                    />
+                )}
+            </Card>
+            <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
+                <Alert variant='filled' elevation={3} onClose={handleClose} severity={snackbarValues?.severity}>
+                    {snackbarValues?.message}
+                </Alert>
+            </Snackbar>
+        </Fragment>
     )
 }
 
