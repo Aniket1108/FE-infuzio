@@ -17,7 +17,7 @@ const TrophyImg = styled('img')({
     position: 'absolute'
 })
 
-const TotalBalance = () => {
+const TotalBalance = ({ isRefreshing }) => {
 
     const useHttpMethod = useHttp();
     const [totalBalance, setTotalBalance] = useState(0.00);
@@ -28,7 +28,7 @@ const TotalBalance = () => {
             if (res.statusCode !== 200) return;
             setTotalBalance(res.payload);
         });
-    }, []);
+    }, [isRefreshing]);
 
 
     // useEffect(() => {

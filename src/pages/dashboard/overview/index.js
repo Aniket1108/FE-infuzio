@@ -20,17 +20,19 @@ const Overview = () => {
     setBalanceUpdated(!balanceUpdated);
   };
 
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
-          <TotalBalance />
+          <TotalBalance isRefreshing={isRefreshing} />
         </Grid>
         <Grid item xs={12} md={8}>
           {/* <RecentTransactions /> */}
         </Grid>
         <Grid item xs={12} md={8}>
-          <CryptoWithdrawal />
+          <CryptoWithdrawal isRefreshing={isRefreshing} setIsRefreshing={setIsRefreshing} />
         </Grid>
         <Grid item xs={12} md={8}>
           <RecentEarnings />

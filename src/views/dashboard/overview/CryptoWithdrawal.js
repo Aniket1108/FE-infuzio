@@ -27,7 +27,7 @@ import toast from 'react-hot-toast'
 
 import { useHttp } from 'src/@core/utils/api_intercepters'
 
-const CryptoWithdrawal = () => {
+const CryptoWithdrawal = ({ isRefreshing, setIsRefreshing }) => {
     // ** States
     const [values, setValues] = useState({
         withdrawAddress: '',
@@ -84,6 +84,8 @@ const CryptoWithdrawal = () => {
                 setOpenSnackbar(true)
                 return
             }
+
+            setIsRefreshing(!isRefreshing)
 
             setSnackbarValues({
                 message: res.message,
