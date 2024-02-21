@@ -17,7 +17,7 @@ import Icon from 'src/@core/components/icon'
 import { useHttp } from 'src/@core/utils/api_intercepters';
 
 
-const RecentTransactions = () => {
+const RecentTransactions = ({ isRefreshing }) => {
 
     const useHttpMethod = useHttp();
     const [recentTransactions, setRecentTransactions] = useState(null);
@@ -29,7 +29,7 @@ const RecentTransactions = () => {
         }).then((res) => {
             setRecentTransactions(res.payload.result);
         });
-    }, []);
+    }, [isRefreshing]);
 
     return (
         <Card sx={{
@@ -61,7 +61,7 @@ const RecentTransactions = () => {
                             }}
                         >
                             <Avatar variant='rounded' sx={{ mr: 3.5, width: 38, height: 38 }} >
-                                <Icon icon='prime:send' />
+                                <Icon icon='cryptocurrency-color:usdt' />
                             </Avatar>
                             <Box
                                 sx={{

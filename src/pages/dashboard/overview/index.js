@@ -13,12 +13,6 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import { useState } from 'react'
 
 const Overview = () => {
-  const [balanceUpdated, setBalanceUpdated] = useState(false);
-
-
-  const updateBalance = () => {
-    setBalanceUpdated(!balanceUpdated);
-  };
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -38,7 +32,7 @@ const Overview = () => {
           <RecentEarnings />
         </Grid>
         <Grid item xs={12} md={4} >
-          <RecentTransactions />
+          <RecentTransactions isRefreshing={isRefreshing} />
         </Grid>
       </Grid>
     </ApexChartWrapper>

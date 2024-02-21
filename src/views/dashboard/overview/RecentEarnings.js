@@ -34,7 +34,7 @@ const data2 = [
     symbol: 'USDT',
     priceInUSD: 1,
     balanceInUSD: 0.22995,
-    imageURL: 'https://dev-crypto-backend.s3.ap-south-1.amazonaws.com/public_images/crypto_icons/tether.png'
+    imageURL: '/images/Crypto_Icons/USDT.png'
   }
 ]
 
@@ -111,7 +111,7 @@ const RecentEarnings = () => {
                         variant='rounded'
                         sx={{ mr: 2.5, width: 36, height: 36 }}
                         src={
-                          '../../../public/images/Crypto_Icons/USDT.png'
+                          '/images/Crypto_Icons/USDT.png'
                         }
                       />
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>

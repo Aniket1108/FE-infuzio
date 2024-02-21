@@ -110,13 +110,13 @@ const CryptoWithdrawal = ({ isRefreshing, setIsRefreshing }) => {
                 }}>
                     <Grid container spacing={5} sx={{ mt: -5 }}>
                         <Grid item xs={12}>
-                            <TextField autoFocus fullWidth id='withdrawAddress' label='Withdrawal Address *' sx={{ mb: 4 }}
+                            <TextField fullWidth id='withdrawAddress' label='Withdrawal Address *' sx={{ mb: 4 }}
                                 value={values.withdrawAddress}
                                 onChange={handleChange('withdrawAddress')}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField autoFocus fullWidth id='withdrawAddress' label='Amount *' sx={{ mb: 4 }}
+                            <TextField fullWidth id='withdrawAddress' label='Amount *' sx={{ mb: 4 }}
                                 value={values.amount}
                                 onChange={handleChange('amount')}
                             />
