@@ -1,6 +1,6 @@
 import Offerwalls from 'src/views/tasks/offerwalls'
 
-const CardStatistics = ({ apiData }) => {
+const CardStatistics = () => {
     return (
         <>
             <Offerwalls />

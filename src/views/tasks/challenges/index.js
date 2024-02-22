@@ -94,6 +94,8 @@ const UserChallenges = () => {
             field: 'name',
             headerName: 'Challenge Name',
             sortable: false,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: (params) => (
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
@@ -108,6 +110,8 @@ const UserChallenges = () => {
             headerName: 'Type of Challenge',
             field: 'service',
             sortable: false,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                     {params.row.service}
@@ -121,6 +125,8 @@ const UserChallenges = () => {
             headerName: 'Status',
             type: 'singleSelect',
             sortable: false,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: (params) => {
                 const isCompleted = params.row.isCompleted || false;
                 const status = statusObj[isCompleted];
@@ -135,6 +141,8 @@ const UserChallenges = () => {
             type: 'number',
             headerName: 'Claimed / Total Count',
             sortable: false,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                     {params.row.successCount > params.row.count ? params.row.count : params.row.successCount} / {params.row.count}
@@ -148,6 +156,8 @@ const UserChallenges = () => {
             type: 'number',
             headerName: 'Reward',
             sortable: false,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: params => (
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                     {params.row.reward} $
@@ -161,6 +171,8 @@ const UserChallenges = () => {
             field: 'actions',
             headerName: 'Actions',
             sortable: false,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: params => [
                 <Button key={params.row._id} size='small' variant='outlined' color='secondary' onClick={() => handleClaim(params.row._id)}>
                     Claim
@@ -191,8 +203,14 @@ const UserChallenges = () => {
     return (
         <Fragment>
             <Card>
-                <CardHeader
-                    title='Challenges' />
+                <CardHeader sx={{
+                    textAlign: 'center', '& .MuiCardHeader-subheader': {
+                        color: 'green',
+                    }, '& .MuiCardHeader-title': {
+                        typography: 'h4',
+                    },
+                }}
+                    title='Challenges' subheader="Claim your rewards after completing Challenges" />
                 {allChallenges.length > 0 && (
                     <DataGrid
                         autoHeight
