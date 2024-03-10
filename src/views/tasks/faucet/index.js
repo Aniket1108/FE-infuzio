@@ -14,6 +14,7 @@ import CustomAvatar from 'src/@core/components/mui/avatar';
 import { useHttp } from 'src/@core/utils/api_intercepters';
 
 import Recaptcha from "react-google-recaptcha"
+
 import ViewAdsHeader from "../../miscellaneous/ViewAds/viewAdsHeader"
 
 const FaucetCrypto = () => {
@@ -21,6 +22,7 @@ const FaucetCrypto = () => {
     const [countdown, setCountdown] = useState(null);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [claimErrorMessage, setClaimErrorMessage] = useState(null);
+
     const [snackbarValues, setSnackbarValues] = useState({
         message: '',
         severity: 'warning',
@@ -39,14 +41,17 @@ const FaucetCrypto = () => {
             const response = await useHttpMethod.get('/faucet/earn/faucet-status');
             setClaimStatus(response.payload);
 
+
             if (!response.payload.isAvailable) {
                 const nextClaimTime = response.payload.nextClaimTime;
                 if (typeof nextClaimTime === 'number') {
                     startCountdown(nextClaimTime);
+
                 }
             }
         } catch (error) {
             console.error('Error fetching claim status:', error);
+
         }
     };
 

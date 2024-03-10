@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Http = axios.create({
-  baseURL: `https://test-api.infuzio.net`,
+  baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   headers: {
     'Content-Type': 'application/json'
   }

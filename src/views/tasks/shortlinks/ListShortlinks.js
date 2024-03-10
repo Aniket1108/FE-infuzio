@@ -12,6 +12,7 @@ import { Snackbar, Alert, } from '@mui/material';
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
+import Preloader from 'src/views/miscellaneous/Preloader.js';
 
 // ** Custom Components
 import CustomChip from 'src/@core/components/mui/chip'
@@ -39,7 +40,7 @@ const ListShortlinks = () => {
   const [hideNameColumn, setHideNameColumn] = useState(false)
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5, })
   const [shortLinksList, setShortLinksList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -54,9 +55,11 @@ const ListShortlinks = () => {
   useEffect(() => {
 
     useHttpMethod.get('/faucet/earn/list-shortlinks').then(res => {
+      setIsLoading(false);
       if (res.statusCode !== 200) {
         setSnackbarValues({ message: response.message, severity: 'error' });
         setOpenSnackbar(true);
+        setIsLoading(false);
       }
       setShortLinksList(res.payload)
 
@@ -174,7 +177,9 @@ const ListShortlinks = () => {
 
   return (
     <Fragment>
-      <Card>
+      {isLoading ? (
+        <Preloader />
+      ) : (<Card>
         <CardHeader sx={{
           textAlign: 'center', '& .MuiCardHeader-subheader': {
             color: 'red',
@@ -198,12 +203,13 @@ const ListShortlinks = () => {
             getRowId={(row) => row._id}
           />
         )}
-      </Card>
+      </Card>)}
       <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
         <Alert variant='filled' elevation={3} onClose={handleClose} severity={snackbarValues?.severity}>
           {snackbarValues?.message}
         </Alert>
       </Snackbar>
+
     </Fragment>
   )
 }

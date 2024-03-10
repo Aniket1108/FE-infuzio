@@ -24,7 +24,7 @@ import { useHttp } from 'src/@core/utils/api_intercepters';
 // ** Data Import
 import { rows } from 'src/@fake-db/table/static-data'
 import { number } from 'yup'
-
+import Preloader from 'src/views/miscellaneous/Preloader.js';
 
 
 const statusObj = {
@@ -39,7 +39,7 @@ const UserChallenges = () => {
     const [hideNameColumn, setHideNameColumn] = useState(false)
     const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5, })
     const [allChallenges, setAllChallenges] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -54,13 +54,20 @@ const UserChallenges = () => {
     useEffect(() => {
 
         useHttpMethod.get('/faucet/earn/list-challenges').then(res => {
+            setIsLoading(false);
             if (res.statusCode !== 200) {
                 setSnackbarValues({ message: response.message, severity: 'error' });
                 setOpenSnackbar(true);
+                setIsLoading(false);
             }
             setAllChallenges(res.payload)
-
         })
+        // .catch(error => {
+        //     setIsLoading(false); // Set isLoading to false if there's an error
+        //     console.error('Error fetching challenges:', error);
+        //     setSnackbarValues({ message: 'Error fetching challenges', severity: 'error' });
+        //     setOpenSnackbar(true);
+        // });
 
     }, []);
 
@@ -202,31 +209,34 @@ const UserChallenges = () => {
 
     return (
         <Fragment>
-            <Card>
-                <CardHeader sx={{
-                    textAlign: 'center', '& .MuiCardHeader-subheader': {
-                        color: 'green',
-                    }, '& .MuiCardHeader-title': {
-                        typography: 'h4',
-                    },
-                }}
-                    title='Challenges' subheader="Claim your rewards after completing Challenges" />
-                {allChallenges.length > 0 && (
-                    <DataGrid
-                        autoHeight
-                        rows={rows}
-                        columns={columns}
-                        disableColumnMenu
-                        disableRowSelectionOnClick
-                        pageSizeOptions={[5, 10, 25, 50]}
-                        // pcountSizeOptions={[5, 10, 25, 50]}
-                        paginationModel={paginationModel}
-                        onPaginationModelChange={setPaginationModel}
-                        initialState={{ columns: { columnVisibilityModel: { name: hideNameColumn } } }}
-                        getRowId={(row) => row._id}
-                    />
-                )}
-            </Card>
+            {isLoading ? (
+                <Preloader />
+            ) : (
+                <Card>
+                    <CardHeader sx={{
+                        textAlign: 'center', '& .MuiCardHeader-subheader': {
+                            color: 'green',
+                        }, '& .MuiCardHeader-title': {
+                            typography: 'h4',
+                        },
+                    }}
+                        title='Challenges' subheader="Claim your rewards after completing Challenges" />
+                    {allChallenges.length > 0 && (
+                        <DataGrid
+                            autoHeight
+                            rows={rows}
+                            columns={columns}
+                            disableColumnMenu
+                            disableRowSelectionOnClick
+                            pageSizeOptions={[5, 10, 25, 50]}
+                            // pcountSizeOptions={[5, 10, 25, 50]}
+                            paginationModel={paginationModel}
+                            onPaginationModelChange={setPaginationModel}
+                            initialState={{ columns: { columnVisibilityModel: { name: hideNameColumn } } }}
+                            getRowId={(row) => row._id}
+                        />
+                    )}
+                </Card>)}
             <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={3000}>
                 <Alert variant='filled' elevation={3} onClose={handleClose} severity={snackbarValues?.severity}>
                     {snackbarValues?.message}
