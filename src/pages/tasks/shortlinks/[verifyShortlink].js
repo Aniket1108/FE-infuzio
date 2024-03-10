@@ -15,7 +15,7 @@ const verifyShortlink = () => {
     const [open, setOpen] = useState(false)
     const handleClickOpen = () => setOpen(true)
     const handleClose = () => {
-        router.push('/faucet/shortlinks')
+        router.push('/tasks/shortlinks')
     }
 
     const useHttpMethod = useHttp();

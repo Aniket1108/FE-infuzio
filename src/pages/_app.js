@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 
 // ** Loader Import
 import NProgress from 'nprogress'
+import Preloader from 'src/views/miscellaneous/Preloader'
 
 // ** Emotion Imports
 import { CacheProvider } from '@emotion/react'
@@ -71,15 +72,15 @@ if (themeConfig.routingLoader) {
   })
 }
 
-const Guard = ({ children, authGuard, guestGuard }) => {
-  if (guestGuard) {
-    return <GuestGuard fallback={<Spinner />}>{children}</GuestGuard>
-  } else if (!guestGuard && !authGuard) {
-    return <>{children}</>
-  } else {
-    return <AuthGuard fallback={<Spinner />}>{children}</AuthGuard>
-  }
-}
+// const Guard = ({ children, authGuard, guestGuard }) => {
+//   if (guestGuard) {
+//     return <GuestGuard fallback={<Spinner />}>{children}</GuestGuard>
+//   } else if (!guestGuard && !authGuard) {
+//     return <>{children}</>
+//   } else {
+//     return <AuthGuard fallback={<Spinner />}>{children}</AuthGuard>
+//   }
+// }
 
 // ** Configure JSS & ClassName
 const App = props => {
@@ -107,6 +108,7 @@ const App = props => {
           <meta name='keywords' content='Crypto, faucet, earn, earn crypto, best faucet, infuzio, infuzio faucet' />
           <meta name='viewport' content='initial-scale=1, width=device-width' />
         </Head>
+
 
         {/* <AuthProvider> */}
         <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
