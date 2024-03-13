@@ -12,7 +12,7 @@ import { Snackbar, Alert, } from '@mui/material';
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
-import Preloader from 'src/views/miscellaneous/Preloader.js';
+import Preloader from 'src/views/miscellaneous/PreLoader.js';
 
 // ** Custom Components
 import CustomChip from 'src/@core/components/mui/chip'

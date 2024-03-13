@@ -24,7 +24,7 @@ import { useHttp } from 'src/@core/utils/api_intercepters';
 // ** Data Import
 import { rows } from 'src/@fake-db/table/static-data'
 import { number } from 'yup'
-import Preloader from 'src/views/miscellaneous/Preloader.js';
+import Preloader from 'src/views/miscellaneous/PreLoader.js';
 
 
 const statusObj = {

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 
 // ** Loader Import
 import NProgress from 'nprogress'
-import Preloader from 'src/views/miscellaneous/Preloader'
+import Preloader from 'src/views/miscellaneous/PreLoader'
 
 // ** Emotion Imports
 import { CacheProvider } from '@emotion/react'

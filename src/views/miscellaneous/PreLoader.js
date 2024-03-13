@@ -34,7 +34,7 @@ const Preloader = () => {
 export default Preloader;
 
 
-// import Preloader from 'src/views/miscellaneous/Preloader.js';
+// import Preloader from 'src/views/miscellaneous/PreLoader.js';
 
 // const [isLoading, setIsLoading] = useState(true);
 
