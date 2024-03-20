@@ -15,6 +15,12 @@ class CustomDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
+
+          {/* <script
+            async
+            src="https://arc.io/widget.min.js#kmL4Dna1"
+          ></script> */}
+
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
@@ -39,12 +45,12 @@ CustomDocument.getInitialProps = async ctx => {
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: App => props =>
-        (
-          <App
-            {...props} // @ts-ignore
-            emotionCache={cache}
-          />
-        )
+      (
+        <App
+          {...props} // @ts-ignore
+          emotionCache={cache}
+        />
+      )
     })
   const initialProps = await Document.getInitialProps(ctx)
   const emotionStyles = extractCriticalToChunks(initialProps.html)
