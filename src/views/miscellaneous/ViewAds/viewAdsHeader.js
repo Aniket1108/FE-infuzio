@@ -1,59 +1,33 @@
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent'
-
+import { useMediaQuery } from '@mui/material';
+import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 
-// Styled Grid component
-const StyledGrid1 = styled(Grid)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    [theme.breakpoints.down('md')]: {
-        paddingTop: '0 !important'
-    },
-    '& .MuiCardContent-root': {
-        [theme.breakpoints.down('md')]: {
-            paddingTop: 0
-        }
-    }
-}))
-
-// Styled Grid component
-
-
-// Styled component for the image
-const Img = styled('img')(({ theme }) => ({
-    height: '11rem',
-    borderRadius: theme.shape.borderRadius
-}))
-
 const ViewAdsHeader = () => {
+    const isMobile = useMediaQuery('(max-width: 600px)');
     return (
-        <Card>
-            <Grid container spacing={6}>
-                <StyledGrid1 item xs={12} md={6} lg={7}>
-                    <CardContent>
-                        <Typography variant='h6' sx={{ mb: 2 }}>
-                            Stumptown Roasters
-                        </Typography>
-                        <Box sx={{ mb: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+
+        <Typography variant='h5' sx={{ textAlign: 'center', width: '100%' }}>
+            <Grid item>
+                <iframe
+                    data-aa='2311159'
+                    src='//ad.a-ads.com/2311159?size=728x90'
+                    style={{ width: isMobile ? '100%' : '728px', height: '90px', border: '0', padding: '0', overflow: 'hidden', backgroundColor: 'transparent' }}>
+                </iframe>
+                <Grid item>
+                    <a
+                        href="https://a-ads.com?partner=2311915">
+                        <img src="https://a-ads.com/a_ads_banners/gif/english/728x90/simple_v1.gif"
+                            alt="Advertise with Anonymous Ads"
+                            style={{ width: isMobile ? '100%' : '728px', height: '90px', border: '0', padding: '0', overflow: 'hidden', backgroundColor: 'transparent' }} />
+                    </a>
+
+                </Grid>
+            </Grid >
+        </Typography>
 
 
-                        </Box>
-                        <Typography variant='body2'>
-                            Before there was a United States of America, there were coffee houses, because how are you supposed to
-                            build.
-                        </Typography>
-                    </CardContent>
 
-                </StyledGrid1>
-
-            </Grid>
-        </Card>
     )
 }
 

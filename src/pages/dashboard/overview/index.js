@@ -7,6 +7,7 @@ import TotalBalance from 'src/views/dashboard/overview/TotalBalance.js'
 import EcommerceTotalBalance from 'src/views/dashboards/ecommerce/EcommerceTotalBalance'
 import RecentTransactions from 'src/views/dashboard/overview/RecentTransactions.js'
 import CryptoWithdrawal from 'src/views/dashboard/overview/CryptoWithdrawal.js'
+import ViewAdsHeader from 'src/views/miscellaneous/ViewAds/viewAdsHeader.js'
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
@@ -21,6 +22,9 @@ const Overview = () => {
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
           <TotalBalance isRefreshing={isRefreshing} />
+        </Grid>
+        <Grid item xs={12} md={8} sx={{ textAlign: 'center', alignContent: 'center' }}>
+          <ViewAdsHeader />
         </Grid>
         <Grid item xs={12} md={8}>
           {/* <RecentTransactions /> */}

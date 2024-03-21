@@ -67,12 +67,12 @@ const ListShortlinks = () => {
 
   }, []);
 
-  const generateShortlink = async (e, shortlinkId) => {
+  const generateShortlink = async (shortlinkId) => {
     try {
-      e.preventDefault()
+
       const response = await useHttpMethod.get(`/faucet/earn/generate-shortlink?shortlinkId=${shortlinkId}`);
       if (response.statusCode !== 200) {
-        setSnackbarValues({ message: res.message, severity: 'error' });
+        setSnackbarValues({ message: response.message, severity: 'error' });
         setOpenSnackbar(true);
       } else {
         window.open(response.payload.shortlink, '_blank');
@@ -85,8 +85,7 @@ const ListShortlinks = () => {
         });
       }
     } catch (error) {
-
-      setSnackbarValues({ message: response.message, severity: 'error' });
+      setSnackbarValues({ message: error.message, severity: 'error' });
       setOpenSnackbar(true);
     }
   };
@@ -150,7 +149,7 @@ const ListShortlinks = () => {
       align: 'center',
       headerAlign: 'center',
       renderCell: params => [
-        <Button key={params.row._id} size='small' variant='outlined' color='secondary' onClick={(e) => generateShortlink(e, params.row._id)}>
+        <Button key={params.row._id} size='small' variant='outlined' color='secondary' onClick={() => generateShortlink(params.row._id)}>
           Claim
         </Button>,
       ],
